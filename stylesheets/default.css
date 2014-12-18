@@ -1,0 +1,52 @@
+body {
+  color: #000000;
+  background-color: #47E0FF;
+}
+
+a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+#nav-bar {
+  left: 200px;
+}
+
+#background-panel {
+  background-color: #41A0E8;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 100%;
+  width: 95%;
+}
+
+#home, #about-me, #resume, #portfolio, #blog {
+  background-color: #41A0E8;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #FFFFFF;
+  display: inline-block;
+  height: 30px;
+  padding: 10px;
+  width: 70px;
+  padding: 5px 5px 5px 5px;
+}
+
+#profile {
+  border: 5px solid #41A0E8;
+  height: 242px;
+  width: 242px;
+}
+
+#main {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  height: 100%;
+  margin: auto;
+  width: 1000px;
+}
+
+a:visited {
+  text-decoration: none;
+}
