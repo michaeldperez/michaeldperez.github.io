@@ -1,11 +1,7 @@
 body {
-  color: #000000;
   background-color: #47E0FF;
-}
-
-h1 {
-font-size: 50px;
-text-align: center;
+  color: #000000;
+  font-family: Arial, sans-serif;
 }
 
 a {
@@ -21,6 +17,7 @@ a {
   background-color: #41A0E8;
   border-radius: 5px;
   height: 100%;
+  margin: auto;
   width: 95%;
 }
 
@@ -54,6 +51,7 @@ a {
   display: inline-block;
   height: 242px;
   margin-top: 20px;
+  margin-left: 23px;
   position: absolute;
   width: 242px;
 }
@@ -69,6 +67,7 @@ a {
   background-color: #FFFFFF;
   border-radius: 5px;
   display: inline-block;
+  font-family: Arial, sans-serif;
   height: 100%;
   margin-left:300px;
   margin-top: 20px;
