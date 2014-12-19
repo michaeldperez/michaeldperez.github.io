@@ -49,3 +49,13 @@ section a {
   text-decoration: none;
   color: #41A0E8;
 }
+
+#nav-footer {
+  margin: 0 auto;
+
+}
+
+.post-nav {
+  display: inline;
+  margin: auto;
+}
