@@ -3,48 +3,82 @@ body {
   background-color: #47E0FF;
 }
 
+h1 {
+font-size: 50px;
+text-align: center;
+}
+
 a {
   color: #FFFFFF;
   text-decoration: none;
 }
 
 #nav-bar {
-  left: 200px;
+  margin-left: 50px;
 }
 
 #background-panel {
   background-color: #41A0E8;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 5px;
   height: 100%;
   width: 95%;
 }
 
-#home, #about-me, #resume, #portfolio, #blog {
+.tab {
   background-color: #41A0E8;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  color: #FFFFFF;
   display: inline-block;
   height: 30px;
+  left: 20px;
   padding: 10px;
   width: 70px;
-  padding: 5px 5px 5px 5px;
+}
+
+.tab-text {
+  color: #FFFFFF;
+  margin: auto;
+}
+
+.content {
+  display: inline-block;
+}
+
+#intro-images {
+  display: inline;
 }
 
 #profile {
   border: 5px solid #41A0E8;
+  border-radius: 5px;
+  display: inline-block;
   height: 242px;
+  margin-top: 20px;
+  position: absolute;
   width: 242px;
+}
+
+#landscape {
+  display: inline;
+  height: 242px;
+  width: 600px;
+  float: right;
 }
 
 #main {
   background-color: #FFFFFF;
   border-radius: 5px;
+  display: inline-block;
   height: 100%;
-  margin: auto;
-  width: 1000px;
+  margin-left:300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 800px;
+}
+
+.social-media {
+  margin-left: 50px;
 }
 
 a:visited {
