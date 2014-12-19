@@ -2,6 +2,10 @@ h3 {
   color: #FFFFFF;
 }
 
+section h3 {
+  color: #000000;
+}
+
 main {
   font-family: Arial, sans-serif;
 }
