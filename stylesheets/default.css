@@ -25,6 +25,7 @@ a {
   background-color: #41A0E8;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  box-shadow: 1px 0 #000000;
   display: inline-block;
   height: 30px;
   left: 20px;
@@ -46,8 +47,9 @@ a {
 }
 
 #profile {
-  border: 5px solid #41A0E8;
+  border: 1px solid #FFFFFF;
   border-radius: 5px;
+  box-shadow: 2px 2px #000000;
   display: inline-block;
   height: 242px;
   margin-top: 20px;
@@ -66,6 +68,7 @@ a {
 #main {
   background-color: #FFFFFF;
   border-radius: 5px;
+  box-shadow: 2px 2px #000000;
   display: inline-block;
   font-family: Arial, sans-serif;
   height: 100%;
