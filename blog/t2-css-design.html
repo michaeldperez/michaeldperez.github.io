@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+  <link type="text/css" rel="stylesheet" href="../stylesheets/blog-stylesheet.css" />
+</head>
+<body>
+<div class = "overlay">
+<div class="blog-post-background">
+<main>
+  <h1>CSS Positioning:</h1>
+  <h2>When and How to Use Static, Relative, Absolute, Fixed, and Inherit Values</h2>
+  <h4>19 December 2014</h4>
+
+  <section>
+    <h3>Improve Your Layouts with CSS's Position Property</h3>
+    <p>
+      Positioning elements on your site can either be the bane of your existence, or a feature that sets your page apart from others. Here I'll explain CSS's position property as well as how and when to use each of it's five values. Each value has it's specific purpose so it is important to understand how they differ in order to properly organize elements on your page. Usage of the position property is surprisingly simple and after reading this post you'll be well on your way toward creating beautifuly laid out webpages.
+    </p>
+    <h4> The Static Position</h4>
+    <p>
+      Before we begin with the static position, it's important to keep in mind how elements are organized on your page. When you are writing your HTML, elements that appear above or before other elements in the markup are layered on top of those that follow. So, if you'd like, you can think of HTML elements as being stacked on top of one another like blocks. What the position property does is it allows you to alter how HTML elements relate to one another; If you don't want elements to be stacked directly on top of one another, you no longer have to. If you want, you can position an element anywhere on the screen or have it stay in a particular spot and never move (even when scrolling in your browser). The choice is yours.
+    </p>
+    <p>
+      "static" is the default value for all HTML elements, and they behave as their name implies. Static elements sit on top of one another and do not move from that position. Elements that come first in the HTML markup appear toward the top, and those that come toward the end of the document appear toward the bottom, like a tower. To illustrate, consider the following CSS code:
+      <pre>
+        <code>
+          #box1s {
+            background-color: #FF0000;
+            height: 50px;
+            position: static;
+            width: 50px;
+            }
+
+          #box2s {
+            background-color: #00FF00;
+            height: 50px;
+            position: static;
+            width: 50px;
+          }
+        </code>
+      </pre>
+      The above code is for two elements: a red box and a green box.
+    </p>
+  </section>
+  <section>
+    <div id="nav-footer">
+      <p class="post-nav"><a href="#">Previous</a> |</p>
+      <p class="post-nav"><a href="./index.html">Home</a> |</p>
+      <p class="post-nav"><a href="#">Next</a></p>
+    </div>
+  </section>
+</main>
+</div>
+</div>
+</body>
+</html>
