@@ -73,14 +73,15 @@ a {
   font-family: Arial, sans-serif;
   height: 100%;
   margin-left:300px;
-  margin-top: 20px;
+  margin-top: -298px;
   margin-bottom: 20px;
   padding: 20px;
   width: 800px;
 }
 
 .social-media {
-  margin-left: 50px;
+  margin-left: 70px;
+  margin-top: 280px;
 }
 
 a:visited {
