@@ -1,5 +1,5 @@
 body {
-  background-color: #47E0FF;
+  background-color: #C0DEED;
   color: #000000;
   font-family: Arial, sans-serif;
 }
@@ -14,7 +14,7 @@ a {
 }
 
 #background-panel {
-  background-color: #41A0E8;
+  background-color: #55ACEE;
   border-radius: 5px;
   height: 100%;
   margin: auto;
@@ -22,7 +22,7 @@ a {
 }
 
 .tab {
-  background-color: #41A0E8;
+  background-color: #55ACEE;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   box-shadow: 1px 0 #000000;
