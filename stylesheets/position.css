@@ -1,0 +1,62 @@
+.contain {
+  height: 60px;
+  position: static;
+  width: 60px;
+}
+
+.contain2 {
+  height: 60px;
+  position: static;
+  width: 100px;
+}
+
+#square1s {
+  background-color: #FF0000;
+  height: 50px;
+  position: static;
+  width: 50px;
+}
+
+#square2s {
+  background-color: #00FF00;
+  height: 50px;
+  position: static;
+  width: 50px;
+}
+
+#square1r {
+  background-color: #FF0000;
+  height: 50px;
+  left: 20px;
+  position: relative;
+  width: 50px;
+}
+
+#square2r {
+  background-color: #00FF00;
+  height: 50px;
+  position: relative;
+  width: 50px;
+}
+
+#square1a {
+  background-color: #FF0000;
+  height: 50px;
+  position: absolute;
+  width: 50px;
+}
+
+#square1al {
+  background-color: #FF0000;
+  height: 50px;
+  left: 250px;
+  position: absolute;
+  width: 50px;
+}
+
+#square2a {
+  background-color: #00FF00;
+  height: 50px;
+  position: absolute;
+  width: 50px;
+}

@@ -5,13 +5,14 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
   <link type="text/css" rel="stylesheet" href="../stylesheets/blog-stylesheet.css" />
+  <link type="text/css" rel="stylesheet" href="../stylesheets/position.css" />
 </head>
 <body>
 <div class = "overlay">
 <div class="blog-post-background">
 <main>
   <h1>CSS Positioning:</h1>
-  <h2>When and How to Use Static, Relative, Absolute, Fixed, and Inherit Values</h2>
+  <h2>When and How to the Position Property</h2>
   <h4>19 December 2014</h4>
 
   <section>
@@ -27,14 +28,14 @@
       "static" is the default value for all HTML elements, and they behave as their name implies. Static elements sit on top of one another and do not move from that position. Elements that come first in the HTML markup appear toward the top, and those that come toward the end of the document appear toward the bottom, like a tower. To illustrate, consider the following CSS code:
       <pre>
         <code>
-          #box1s {
+          #square1s {
             background-color: #FF0000;
             height: 50px;
             position: static;
             width: 50px;
-            }
+          }
 
-          #box2s {
+          #square2s {
             background-color: #00FF00;
             height: 50px;
             position: static;
@@ -42,7 +43,99 @@
           }
         </code>
       </pre>
-      The above code is for two elements: a red box and a green box.
+      The above code is for two elements: a red box and a green box. With each of these elements' position set to static they appear on the page with the red box stacked directly above the green box as follows:
+    </p>
+    <p>
+      <div id="square1s"></div>
+      <div id="square2s"></div>
+    </p>
+    <p>
+      Unlike the properties that follow, an element with it's position property set to static cannot be altered using the standard offet properties of left:, right:, top:, bottom:.
+    </p>
+    <h4>The Relative Position</h4>
+    <p>
+      Similarly to elements with their position properties set to static, elements set to "absolute" layer on top of one another. Where they differ is in absolute-positioned element's ability to be offset with the left:, right:, top:, and bottom: properties. Take the following example. Here the red box is offset 20 pixels to the right by setting it's left: property to 20px:
+      <pre>
+        <code>
+          #square1r {
+            background-color: #FF0000;
+            height: 50px;
+            left: 20px;
+            position: relative;
+            width: 50px;
+          }
+
+          #square2r {
+            background-color: #00FF00;
+            height: 50px;
+            position: relative;
+            width: 50px;
+          }
+        </code>
+      </pre>
+      Here's how these squares would appear on your page:
+    </p>
+    <p>
+      <div id="square1r"></div>
+      <div id="square2r"></div>
+    </p>
+    <p>
+      Keep in mind that without the red square being offset by 20 pixels, the blocks would be stacked on top of one another no differently than if their position were set to static. Where relative-positioned elements get their name from is that they are offset <em>relative</em> to their parent element. In the examples used above (and throughout this post) the elements are positioned relative to the document itself. If an element is nested inside another element, it's position property and any offsetting properties are in relation to, or relative to, that parent element (instead of the document). Nevertheless, the practice of nesting elements within other elements and altering their position property is more common among elements set to "absolute" than set to relative.
+    </p>
+    <h4>The Absolute Position</h4>
+    <p>
+      The interesting thing about static and relative positioning is that offseting an element using these properties does <em>not</em> affect in any way the elements that preceed and/or follow. This can be observed above; Offsetting the red square had no affect on the positioning of the green square, which remains where it would have been if the red square had not been offset.
+    </p>
+    <p>
+      This is <em>not</em> the case with elements whose position value is set to "absolute". Such elements are positioned in relation to the first parent element whose position is <em>not</em> set to static. These elements can effectively be positioned <em>anywhere</em> on the page, regardless of where other elements sit. In other words, the blocking or stacking effect of static- and/or relative-positioned elements no long holds.
+    </p>
+    <p>
+      Perhaps the best way to wrap one's head around this notion is through an example. The code below differs from the static squares' code only in having the position properties set to absolute.
+      <pre>
+      <code>
+          #square1a {
+            background-color: #FF0000;
+            height: 50px;
+            left: 20px;
+            position: absolute;
+            width: 50px;
+          }
+
+          #square2a {
+            background-color: #00FF00;
+            height: 50px;
+            position: absolute;
+            width: 50px;
+          }
+        </code>
+      </pre>
+    </p>
+    <p>
+      Notice the effect:
+    </p>
+    <p>
+      <div class="contain">
+        <div id = "square1a"></div>
+        <div id = "square2a"></div>
+      </div>
+    </p>
+    <p>
+      It may appear as if the red square has disappeared. In actuality, the green square is sitting directly <em>on top of</em> the red square. Since absolute-positioned elements do not stack, the fact that the red square comes first in the hierarchy of code makes no difference. Both are positioned relative to the first parent not statically positioned. Since no such parent exists, in this case they are both positioned exactly the same way relative to the document itself. In order for us to see the red square, let's offset it a ways to the right:
+    </p>
+    <p>
+    <div class = "contain2">
+      <div id = "square1al"></div>
+      <div id = "square2a"></div>
+    </div>
+    </p>
+    <p>
+      Now the red square is visible. In my experience, elements with their position properties set to absoulte are easier to work with if they are contained within a parent element (such as within a &lt;div&gt; tag) with an id or class whose height and width are sufficient to contain the element.
+    </p>
+    <h4>The Fixed Position</h4>
+    <p>
+    </p>
+    <p>
+      If you'd like to experiment with element positioning, feel free to experiment with the code above in <a href="http://codepen.io">Codepen</a>.
     </p>
   </section>
   <section>
