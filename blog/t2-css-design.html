@@ -18,7 +18,7 @@
   <section>
     <h3>Improve Your Layouts with CSS's Position Property</h3>
     <p>
-      Positioning elements on your site can either be the bane of your existence, or a feature that sets your page apart from others. Here I'll explain CSS's position property as well as how and when to use each of it's five values. Each value has it's specific purpose so it is important to understand how they differ in order to properly organize elements on your page. Usage of the position property is surprisingly simple and after reading this post you'll be well on your way toward creating beautifuly laid out webpages.
+      Positioning elements on your site can either be the bane of your existence, or a feature that sets your page apart from others. Here I'll explain CSS's position property as well as how and when to use each of it's five values. Each value has it's specific purpose so it is important to understand how they differ in order to properly organize elements on your page. Usage of the position property is surprisingly simple and after reading this post you'll be well on your way toward creating beautifully laid out webpages.
     </p>
     <h4> The Static Position</h4>
     <p>
@@ -50,7 +50,7 @@
       <div id="square2s"></div>
     </p>
     <p>
-      Unlike the properties that follow, an element with it's position property set to static cannot be altered using the standard offet properties of left:, right:, top:, bottom:.
+      Unlike the properties that follow, an element with it's position property set to static cannot be altered using the standard offset properties of left:, right:, top:, bottom:.
     </p>
     <h4>The Relative Position</h4>
     <p>
@@ -84,7 +84,7 @@
     </p>
     <h4>The Absolute Position</h4>
     <p>
-      The interesting thing about static and relative positioning is that offseting an element using these properties does <em>not</em> affect in any way the elements that preceed and/or follow. This can be observed above; Offsetting the red square had no affect on the positioning of the green square, which remains where it would have been if the red square had not been offset.
+      The interesting thing about static and relative positioning is that offsetting an element using these properties does <em>not</em> affect in any way the elements that precede and/or follow. This can be observed above; Offsetting the red square had no affect on the positioning of the green square, which remains where it would have been if the red square had not been offset.
     </p>
     <p>
       This is <em>not</em> the case with elements whose position value is set to "absolute". Such elements are positioned in relation to the first parent element whose position is <em>not</em> set to static. These elements can effectively be positioned <em>anywhere</em> on the page, regardless of where other elements sit. In other words, the blocking or stacking effect of static- and/or relative-positioned elements no long holds.
@@ -129,18 +129,45 @@
     </div>
     </p>
     <p>
-      Now the red square is visible. In my experience, elements with their position properties set to absoulte are easier to work with if they are contained within a parent element (such as within a &lt;div&gt; tag) with an id or class whose height and width are sufficient to contain the element.
+      Now the red square is visible.
+    </p>
+    <p>
+      I should note that in writing this blog, it was easier to work with elements with their position properties set to absolute after nesting them within a parent element (e.g. a &lt;div&gt; tag) with an id or class whose height and width were sufficient to contain the elements.
     </p>
     <h4>The Fixed Position</h4>
     <p>
+      Fixed-positioned elements share the same behavior as absolute-positioned objects. How they differ is that fixed-position elements are positioned in relation to the browser rather than the parent element. Also, as the name implies, the element is fixed in its position in the browser and does not move. This is true even when you scroll up and down. That little yellow block in the upper right-hand corner has it's position property set to fixed, and by now you have probably noticed that it has followed you as you have read down the page. The square was created with the following code:
+    <pre>
+      <code>
+        #square1f {
+          background-color: #FFFF00;
+          height: 50px;
+          top: 0;
+          right: 0;
+          position: fixed;
+          width: 50px;
+        }
+      </code>
+    </pre>
     </p>
     <p>
+      <div id = "square1f"></div>
+    </p>
+    <p>
+      See? Nothin' to it!
+    </p>
+    <h4>The Inherit Property</h4>
+    <p>
+      The final position property is the "inherit" value. As you might have guessed, elements with their position property set in such a way inherit the value of their parent element. Recall that the default position property value is not inherit, but static. Thus, if you want elements to inherit their positioning from their parents their value will have to be set accordingly.
+    </p>
+    <p>
+      That's pretty much all there is to an element's positioning. After you get a handle on the various types you'll be ready to design any layout you can imagine.
       If you'd like to experiment with element positioning, feel free to experiment with the code above in <a href="http://codepen.io">Codepen</a>.
     </p>
   </section>
   <section>
     <div id="nav-footer">
-      <p class="post-nav"><a href="#">Previous</a> |</p>
+      <p class="post-nav"><a href="./c1-chefs-kitchen.html">Previous</a> |</p>
       <p class="post-nav"><a href="./index.html">Home</a> |</p>
       <p class="post-nav"><a href="#">Next</a></p>
     </div>

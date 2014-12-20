@@ -60,3 +60,12 @@
   position: absolute;
   width: 50px;
 }
+
+ #square1f {
+  background-color: #FFFF00;
+  height: 50px;
+  top: 0;
+  right: 0;
+  position: fixed;
+  width: 50px;
+}
