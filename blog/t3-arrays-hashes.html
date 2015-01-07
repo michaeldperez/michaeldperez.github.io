@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
   <link type="text/css" rel="stylesheet" href="../stylesheets/blog-stylesheet.css" />
-  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js">
+  </script>
 </head>
 <body>
 <div class = "overlay">
@@ -18,11 +19,24 @@
   <section>
     <h3></h3>
     <p>
-      Much of programming is dealing with collections of objects. For example, you may search through a customer database to pull information on specific order types, or you may sort individual cutomers by location. In Ruby, these objects are typically stored inside two types of <em>container</em>objects: <em>arrays</em>, and <em>hashes</em>. Here, I'll breifly describe both the <span class="rbcode">Array</span> and the <span class="rbcode">Hash</span> classes. I'll begin by introducing each class individually before concluding with a brief discussion on how they compare with one another.
+      Much of programming is dealing with collections of objects. For example, you may search through a customer database to pull information on specific order types, or you may sort individual cutomers by location. In Ruby, these objects are typically stored inside two types of <em>container</em> objects: <em>arrays</em>, and <em>hashes</em>. Here, I'll breifly describe both the <span class="rbcode">Array</span> and the <span class="rbcode">Hash</span> classes. I'll begin by introducing each class individually before concluding with a brief discussion on how they compare with one another. Since this is only a brief introduction to Ruby's container objects, those interested in a more thorough treatment are referred to "Chapter 9: Collection and Container Objects" in David A. Black's <a href="http://www.manning.com/black3/">The Well-Grounded Rubyist</a>, and "Chapter 3: Ruby's Building Blocks: Data, Expressions, and Flow Control" in Peter Cooper's <a href="http://www.apress.com/9781430223634/">Beginning Ruby</a>.
     </p>
     <h4>Arrays</h4>
     <p>
-      An <em>array</em> is an ordered collection of objects. Objects within an array are indexed by integers. If <span class ="rbcode">n</span> is the length, or the total number of objects in the array, then objects in the array are indexed beginning with 0, and continue incrementally until the final object in the collection, which is indexed by <span clas="rbcode">n - 1</span>.
+      An <em>array</em> is an ordered collection of objects. Objects within an array are indexed by integers. If <span class ="rbcode">n</span> is the length, or the total number of objects in the array, then objects in the array are indexed beginning with 0, and continue incrementally until the final object in the collection, which is indexed by <span clas="rbcode">n - 1</span>. Any object can be stored in an array: strings, numbers, booleans, symbols, even other arrays and hashes.
+    </p>
+    <p>
+      Arrays can be created one of four ways:
+      <ul>
+        <li>By making a call to the <span class = "rbcode">new</span> method.</li>
+        <li>Literally, using the square-bracket array constructor.</li>
+        <li>With the <span class = "rbcode">Array</span> method.</li>
+        <li>With the special <span class = "rbcode">%w{...}</span> notation.</li>
+      </ul>
+      Here I'll only be using the literal notation. Readers interested in learning the other methods for creating arrays are referred to Ruby's online documentation <a href="http://www.ruby-doc.org/core-2.0/Array.html">site</a> and/or the references cited above. Using the literal constructor, an empty array can be created as follows:
+      <pre class="prettyprint">
+          x = []
+      </pre>
     </p>
   </section>
   <section>
