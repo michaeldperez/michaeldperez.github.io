@@ -1,0 +1,31 @@
+h1 {
+        border: 1px solid #000000;
+        margin: 10px;
+        padding: 5px;
+        text-align: center;
+    }
+
+h2 {
+        font-size: 1.2em;
+    }
+
+h4 {
+        border: 1px solid #000000;
+        margin: 10px;
+        padding: 5px;
+        text-align: center;
+    }
+
+div {
+        border: 1px solid #000000;
+        margin: 10px;
+        padding: 5px;
+    }
+
+.grey {
+        background: #A3A3A3;
+    }
+
+.font-white {
+        color: #FFFFFF;
+    }
