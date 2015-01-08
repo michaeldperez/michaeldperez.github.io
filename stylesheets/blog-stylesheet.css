@@ -68,3 +68,7 @@ section a {
   display: inline;
   margin: auto;
 }
+
+.prettyprint ol.linenums > li {
+  list-style-type: decimal;
+}
