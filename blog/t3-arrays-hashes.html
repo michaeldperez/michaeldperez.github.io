@@ -29,11 +29,14 @@
       Arrays can be created one of four ways:
       <ul>
         <li>By making a call to the <span class = "rbcode">new</span> method.</li>
-        <li>Literally, using the square-bracket array constructor ([]).</li>
+        <li>Literally, using the square bracket array constructor ([]).</li>
         <li>With the <span class = "rbcode">Array</span> method.</li>
         <li>With the special <span class = "rbcode">%w{...}</span> notation.</li>
       </ul>
-      Here I'll only be using the literal notation because it is the most common among the various array constructors. Readers interested in learning the other methods for creating arrays are referred to Ruby's online documentation <a href="http://www.ruby-doc.org/core-2.0/Array.html">site</a> and/or the references cited above. Using the literal constructor, an empty array can be created as follows:
+      Here I'll only be using the literal notation because it is the most common among the various array constructors. Readers interested in learning the other methods for creating arrays are referred to Ruby's online documentation <a href="http://www.ruby-doc.org/core-2.0/Array.html">site</a> and/or the references cited above.
+    </p>
+    <p>
+      Using the literal constructor, an empty array can be created as follows:
       <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; x = []
       &gt;&gt; #=> []
@@ -46,15 +49,15 @@
       creates an array, assigned to the variable <span class = "rbcode">x</span>, which contains four elements: the numbers 1 and 2; as well as two strings: "hello" and "world". Note that asigning the array to the variable <span class = "rbcode">x</span> is arbitrary. One could just as easily have assigned the array to the variable <span class = "rbcode">a</span>, or the variable <span class = "rbcode">spaghetti</span>; It doesn't matter, although in your own code it <em>is</em> a good idea to label your variables in a way that is expressive.
     </p>
     <p>
-      As mentioned above, array objects are index by integers. Therefore, to access an element in an array, all one needs to do is reference the object by it's index in the array. For example, if we wanted to access the element "hello" in array <span class = "rbcode">x</span> above, all we would need to do is call the array and reference the "hello" element's index, which in this case is 2 (remember that indexing begins at 0 and since "hello" is the third element in the array it's index is 2):
+      As mentioned above, array objects are indexed by integers. Therefore, to access an element in an array, all one needs to do is reference the object by it's index in the array. For example, if we wanted to access the element "hello" in array <span class = "rbcode">x</span> above, all we would need to do is call the array and reference the "hello" element's index, which in this case is 2 (remember that indexing begins at 0 and since "hello" is the third element in the array it's index is 2):
       <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; x[2]
       &gt;&gt; #=> "Hello"
       </pre>
-      As we can see referencing the the second index in the array x results in "hello" being printed to the terminal (as signified by the "#=>" character).
+      As we can see, referencing the second index in the array <span class = "rbcode">x</span> results in "hello" being printed to the terminal (as signified by the "#=>" character).
     </p>
     <p>
-      Notably, array elements can be assigned to specific indicies&mdash;or reassigned if an element already exists&mdash;in a similar fashion. If we want to add the element "foo" to the array <span class = "rbcode">x</span> as it's fourth element, we can do so by simply typing:
+      Notably, array elements can be assigned to specific indicies&mdash;or reassigned if an element already exists&mdash;in a similar fashion. If we want to add the element "foo" to the array <span class = "rbcode">x</span> as it's fifth element, we can do so by simply typing:
       <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; x[4] = 'foo'
       &gt;&gt; x
@@ -81,7 +84,7 @@
         <li>With a call to the <span class = "rbcode">new</span> method.</li>
         <li>With the square brackets method ([]).</li>
       </ul>
-      Once more, I'll primarily focus on the literal constructor, although I will demonstrate a call to the <span class = "rbcode">new</span> method when we discuss setting a hash's default value. If you are curious about the <span class = "rbcode">Hash</span> class's square brackets method, please consult the ruby documentation.
+      Once more, I'll primarily focus on the literal constructor, although I will demonstrate a call to the <span class = "rbcode">new</span> method when we discuss setting a hash's default value. If you are curious about the <span class = "rbcode">Hash</span> class's square brackets method, please consult the Ruby documentation.
     </p>
     <p>
       To create a hash using the literal constructor, you simply type:
@@ -89,14 +92,23 @@
       &gt;&gt; y = {}
       &gt;&gt; #=> {}
       </pre>
-      Here the hash is assigned to the arbitrarily named variable "y". If you want to add values to the hash at the time of creation, you separate keys from their values with the "=>" operator, like so:
+      Here an empty hash is assigned to the arbitrarily named variable "y". If you want to add values to the hash at the time of creation, you separate keys from their values with the "=>" operator, like so:
       <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; spaghetti = {
         "sauce" => "tomato",
         "pasta" => "angel hair",
         "meat"  => "italian sausage"
       }
-      &gt;&gt; #=> {"sauce" => "tomato", "pasta" => "angel hair", "meat" => italian sausage}
+      &gt;&gt; #=> {"sauce" => "tomato", "pasta" => "angel hair", "meat" => "italian sausage"}
+      </pre>
+      The values in the hash "spaghetti", "tomato", "angel hair", and "meat", are indexed by their respective keys: "sauce", "pasta", and "meat". I have decided to use strings as my keys, but remember that any valid Ruby object will suffice. One common way to index hash values is through <a href = "http://ruby-doc.org/core-2.2.0/Symbol.html">symbols</a>. If you use symbols as keys, then you can use the special <span class = "rbcode">{ key: value }</span> syntax instead of the standard <span class = "rbcode">{ key => value }</span> syntax:
+      <pre class = "prettyprint lang-rb linenums">
+       &gt;&gt; spaghetti = {
+        sauce: "tomato",
+        pasta: "angel hair",
+        meat:  "italian sausage"
+      }
+      &gt;&gt; #=> {:sauce => "tomato", :pasta => "angel hair", :meat => "italian sausage"}
       </pre>
     </p>
   </section>
