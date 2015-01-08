@@ -36,10 +36,12 @@
       Here I'll only be using the literal notation because it is the most common among the various array constructors. Readers interested in learning the other methods for creating arrays are referred to Ruby's online documentation <a href="http://www.ruby-doc.org/core-2.0/Array.html">site</a> and/or the references cited above. Using the literal constructor, an empty array can be created as follows:
       <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; x = []
+      &gt;&gt; #=> []
       </pre>
       Literal constructors can also accommodate objects placed within the array at the time of creation. For example:
       <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; x = [1,2,'hello','world']
+      &gt;&gt: #=> [1,2,'hello','world']
       </pre>
       creates an array, assigned to the variable <span class = "rbcode">x</span>, which contains four elements: the numbers 1 and 2; as well as two strings: "hello" and "world". Note that asigning the array to the variable <span class = "rbcode">x</span> is arbitrary. One could just as easily have assigned the array to the variable <span class = "rbcode">a</span>, or the variable <span class = "rbcode">spaghetti</span>; It doesn't matter, although in your own code it <em>is</em> a good idea to label your variables in a way that is expressive.
     </p>
@@ -85,6 +87,16 @@
       To create a hash using the literal constructor, you simply type:
       <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; y = {}
+      &gt;&gt; #=> {}
+      </pre>
+      Here the hash is assigned to the arbitrarily named variable "y". If you want to add values to the hash at the time of creation, you separate keys from their values with the "=>" operator, like so:
+      <pre class = "prettyprint lang-rb linenums">
+      &gt;&gt; spaghetti = {
+        "sauce" => "tomato",
+        "pasta" => "angel hair",
+        "meat"  => "italian sausage"
+      }
+      &gt;&gt; #=> {"sauce" => "tomato", "pasta" => "angel hair", "meat" => italian sausage}
       </pre>
     </p>
   </section>
