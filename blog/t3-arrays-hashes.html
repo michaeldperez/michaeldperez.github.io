@@ -19,7 +19,7 @@
   <section>
     <h3></h3>
     <p>
-      Much of programming is dealing with collections of objects. For example, you may search through a customer database to pull information on specific order types, or you may sort individual cutomers by location. In Ruby, these objects are typically stored inside two types of <em>container</em> objects: <em>arrays</em>, and <em>hashes</em>. Here, I'll breifly describe both the <span class="rbcode">Array</span> and the <span class="rbcode">Hash</span> classes. I'll begin by introducing each class individually before concluding with a brief discussion on how they compare with one another. Since this is only a brief introduction to Ruby's container objects, those interested in a more thorough treatment are referred to "Chapter 9: Collection and Container Objects" in David A. Black's <a href="http://www.manning.com/black3/">The Well-Grounded Rubyist</a>, and "Chapter 3: Ruby's Building Blocks: Data, Expressions, and Flow Control" in Peter Cooper's <a href="http://www.apress.com/9781430223634/">Beginning Ruby</a>.
+      Much of programming is dealing with collections of objects. For example, you may search through a customer database to pull information on specific order types, or you may sort individual customers by location. In Ruby, these objects are typically stored inside two types of <em>container</em> objects: <em>arrays</em>, and <em>hashes</em>. Here, I'll briefly describe both the <span class="rbcode">Array</span> and the <span class="rbcode">Hash</span> classes. I'll begin by introducing each class individually before concluding with a brief discussion on how they compare with one another. Since this is only a brief introduction to Ruby's container objects, those interested in a more thorough treatment are referred to "Chapter 9: Collection and Container Objects" in David A. Black's <a href="http://www.manning.com/black3/">The Well-Grounded Rubyist</a>, and "Chapter 3: Ruby's Building Blocks: Data, Expressions, and Flow Control" in Peter Cooper's <a href="http://www.apress.com/9781430223634/">Beginning Ruby</a>.
     </p>
     <h4>Arrays</h4>
     <p>
@@ -46,7 +46,7 @@
       &gt;&gt; x = [1,2,'hello','world']
       &gt;&gt: #=> [1,2,'hello','world']
       </pre>
-      creates an array, assigned to the variable <span class = "rbcode">x</span>, which contains four elements: the numbers 1 and 2; as well as two strings: "hello" and "world". Note that asigning the array to the variable <span class = "rbcode">x</span> is arbitrary. One could just as easily have assigned the array to the variable <span class = "rbcode">a</span>, or the variable <span class = "rbcode">spaghetti</span>; It doesn't matter, although in your own code it <em>is</em> a good idea to label your variables in a way that is expressive.
+      creates an array, assigned to the variable <span class = "rbcode">x</span>, which contains four elements: the numbers 1 and 2; as well as two strings: "hello" and "world". Note that assigning the array to the variable <span class = "rbcode">x</span> is arbitrary. One could just as easily have assigned the array to the variable <span class = "rbcode">a</span>, or the variable <span class = "rbcode">spaghetti</span>; It doesn't matter, although in your own code it <em>is</em> a good idea to label your variables in a way that is expressive.
     </p>
     <p>
       As mentioned above, array objects are indexed by integers. Therefore, to access an element in an array, all one needs to do is reference the object by it's index in the array. For example, if we wanted to access the element "hello" in array <span class = "rbcode">x</span> above, all we would need to do is call the array and reference the "hello" element's index, which in this case is 2 (remember that indexing begins at 0 and since "hello" is the third element in the array it's index is 2):
@@ -134,24 +134,24 @@
     </p>
     <p>
       Retrieving hash values is also done in the same way as retrieving array values: one simply calls a hash's value by making reference to it's key:
-      <pre class = "prettyprint lang-rb linenum">
+      <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; spaghetti[:pasta]
       &gt;&gt; #=> "angel hair"
       </pre>
     </p>
     <p>
-      You can also assign default values to hashes. Like arrays, when you try to access or referrence a hash value by a key that does not exist, you get <span class = "rbcode">nil</span>:
-      <pre class = "prettyprint lang-rb linenum">
+      You can also assign default values to hashes. Like arrays, when you try to access or reference a hash value by a key that does not exist, you get <span class = "rbcode">nil</span>:
+      <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; spaghetti[:servings]
       &gt;&gt; #=> nil
       </pre>
       Using the <span class = "rbcode">Hash.new</span> method however, you can supply an argument to the method and assign a different default value. So let's pretend that we were able to go back to the time of the <span class = "rbcode">spaghetti</span> hash's creation, this time specifying a default value:
-      <pre class = "prettyprint lang-rb linenum">
+      <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; spaghetti = Hash.new(0)
       &gt;&gt; #=> {}
       </pre>
-      Then, assumming we subsequently added the previous keys, when we attempt to access a nonexistent key the terminal will now return the specified default value:
-      <pre class = "prettyprint lang-rb linenum">
+      Then, assuming we subsequently added the previous keys, when we attempt to access a nonexistent key the terminal will now return the specified default value:
+      <pre class = "prettyprint lang-rb linenums">
       &gt;&gt; spaghetti[:sauce]
       &gt;&gt; #=> "tomato"
       &gt;&gt; spaghetti[:servings]
@@ -159,12 +159,22 @@
       </pre>
       If we wanted to change this specific value, we could do so by reassigning the <span class = "rbcode">servings</span> key to a new value.
     </p>
+    <h4>So How Do Arrays Compare to Hashes?</h4>
+    <p>
+      Both arrays and hashes are ordered collections. In the case of arrays, items are indexed numerically by consecutive integers. Items in a hash, however, are not numerically indexed but the order in which key/value pairs were entered is remembered. Values in arrays can be any valid Ruby object, but indicies must be consecutive integers and you have no control over them. Both keys (indicies) and values in hashes can be any type of Ruby object. However, keys must be unique. Thus, you have greater control over indicies and values with a hash. Nevertheless, it is useful to think of hashes as a type of array, and arrays as a type of hash: hashes can be thought of as arrays whose indicies need not be consecutive integers and arrays can be thought of as hashes whose keys just happen to be numerically ordered.
+    </p>
+    <p>
+      There is much more to Ruby's container objects than what was briefly discussed here. Ruby's arrays and hashes are capability-rich and powerful objects. Part of what makes these objects so useful is their ability to quickly and efficiently store, combine, transform, and query information. As you continue on your journey to learn Ruby you'll necessarily make more use of these two classes. This blog has served as only an introduction to Ruby container objects. Hopefully it has adequately prepared you to continue learning about hashes and arrays, as well as provided the resources to do so.
+    </p>
+    <p>
+      Curious where to go from here? In addition to the two chapters referenced in the beginning of this post, interested readers should consult Dan Nguyen's <em>The Bastard's Book of Ruby</em>'s chapter on <a href = "http://ruby.bastardsbook.com/chapters/collections/">collections</a>. Enjoy.
+    </p>
   </section>
   <section>
     <div id="nav-footer">
-      <p class="post-nav"><a href="#">Previous</a> |</p>
+      <p class="post-nav"><a href="./t2-css-design.html">Previous</a> |</p>
       <p class="post-nav"><a href="./index.html">Home</a> |</p>
-      <p class="post-nav"><a href="#">Next</a></p>
+      <p class="post-nav"><a href="./c3-thinking-style.html">Next</a></p>
     </div>
   </section>
 </main>
