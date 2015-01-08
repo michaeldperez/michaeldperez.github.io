@@ -130,9 +130,34 @@
       &gt;&gt; spaghetti
       &gt;&gt; #=> {:sauce => "tomato", :pasta => "angel hair", :meat => "italian sausage", :spice => "oregano"}
       </pre>
-      As expected, the "basil" value has been replaced in the hash by "oregano"
+      As expected, the "basil" value has been replaced in the hash by "oregano."
     </p>
     <p>
+      Retrieving hash values is also done in the same way as retrieving array values: one simply calls a hash's value by making reference to it's key:
+      <pre class = "prettyprint lang-rb linenum">
+      &gt;&gt; spaghetti[:pasta]
+      &gt;&gt; #=> "angel hair"
+      </pre>
+    </p>
+    <p>
+      You can also assign default values to hashes. Like arrays, when you try to access or referrence a hash value by a key that does not exist, you get <span class = "rbcode">nil</span>:
+      <pre class = "prettyprint lang-rb linenum">
+      &gt;&gt; spaghetti[:servings]
+      &gt;&gt; #=> nil
+      </pre>
+      Using the <span class = "rbcode">Hash.new</span> method however, you can supply an argument to the method and assign a different default value. So let's pretend that we were able to go back to the time of the <span class = "rbcode">spaghetti</span> hash's creation, this time specifying a default value:
+      <pre class = "prettyprint lang-rb linenum">
+      &gt;&gt; spaghetti = Hash.new(0)
+      &gt;&gt; #=> {}
+      </pre>
+      Then, assumming we subsequently added the previous keys, when we attempt to access a nonexistent key the terminal will now return the specified default value:
+      <pre class = "prettyprint lang-rb linenum">
+      &gt;&gt; spaghetti[:sauce]
+      &gt;&gt; #=> "tomato"
+      &gt;&gt; spaghetti[:servings]
+      &gt;&gt; #=> 0
+      </pre>
+      If we wanted to change this specific value, we could do so by reassigning the <span class = "rbcode">servings</span> key to a new value.
     </p>
   </section>
   <section>
