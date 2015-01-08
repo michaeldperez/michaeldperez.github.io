@@ -110,6 +110,16 @@
       }
       &gt;&gt; #=> {:sauce => "tomato", :pasta => "angel hair", :meat => "italian sausage"}
       </pre>
+      The choice is yours whether to use symbols as keys or some other Ruby object. However, there are anumber of benefits to using symbols (see this discussion on <a href ="http://stackoverflow.com/questions/8189416/why-use-symbols-as-hash-keys-in-ruby">StackOverflow</a>). As such, I'll switch to using symbols as keys in the examples that follow.
+    </p>
+    <p>
+      The technique for adding a key/value pair to a hash is the same for adding an element to an array:
+      <pre class = "prettypring lang-rb linenums">
+      &gt;&gt; spaghetti[:spice] = "basil"
+      &gt;&gt; #=> "basil"
+      &gt;&gt; spaghetti
+      &gt;&gt; #=> {:sauce => "tomato", :pasta => "angel hair", :meat => "italian sausage", :spice => "baisl"}
+      </pre>
     </p>
   </section>
   <section>
