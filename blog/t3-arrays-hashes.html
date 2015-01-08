@@ -29,7 +29,7 @@
       Arrays can be created one of four ways:
       <ul>
         <li>By making a call to the <span class = "rbcode">new</span> method.</li>
-        <li>Literally, using the square-bracket array constructor.</li>
+        <li>Literally, using the square-bracket array constructor ([]).</li>
         <li>With the <span class = "rbcode">Array</span> method.</li>
         <li>With the special <span class = "rbcode">%w{...}</span> notation.</li>
       </ul>
@@ -71,6 +71,21 @@
     <h4>Hashes</h4>
     <p>
       A hash, like an array, is a collection of indexed objects. Objects in a hash are stored in pairs, corresponding to a <em>key</em> and a <em>value</em>. Whereas arrays are indexed by integers, a hash's indicies&mdash;it's keys&mdash;can be objects of any type: strings, integers, symbols, etc. However, hash keys must be unique; for any given key there can be only one key/value pair.
+    </p>
+    <p>
+      There are three ways to create a hash:
+      <ul>
+        <li>With the curly braces literal constructor ({}).</li>
+        <li>With a call to the <span class = "rbcode">new</span> method.</li>
+        <li>With the square brackets method ([]).</li>
+      </ul>
+      Once more, I'll primarily focus on the literal constructor, although I will demonstrate a call to the <span class = "rbcode">new</span> method when we discuss setting a hash's default value. If you are curious about the <span class = "rbcode">Hash</span> class's square brackets method, please consult the ruby documentation.
+    </p>
+    <p>
+      To create a hash using the literal constructor, you simply type:
+      <pre class = "prettyprint lang-rb linenums">
+      &gt;&gt; y = {}
+      </pre>
     </p>
   </section>
   <section>
