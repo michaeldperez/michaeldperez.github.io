@@ -35,44 +35,36 @@
       </ul>
       Here I'll only be using the literal notation because it is the most common among the various array constructors. Readers interested in learning the other methods for creating arrays are referred to Ruby's online documentation <a href="http://www.ruby-doc.org/core-2.0/Array.html">site</a> and/or the references cited above. Using the literal constructor, an empty array can be created as follows:
       <pre class = "prettyprint lang-rb linenums">
-        &gt;&gt; x = []
+      &gt;&gt; x = []
       </pre>
       Literal constructors can also accommodate objects placed within the array at the time of creation. For example:
       <pre class = "prettyprint lang-rb linenums">
-        <code>
-        &gt;&gt; x = [1,2,'hello','world']
-        </code>
+      &gt;&gt; x = [1,2,'hello','world']
       </pre>
       creates an array, assigned to the variable <span class = "rbcode">x</span>, which contains four elements: the numbers 1 and 2; as well as two strings: "hello" and "world". Note that asigning the array to the variable <span class = "rbcode">x</span> is arbitrary. One could just as easily have assigned the array to the variable <span class = "rbcode">a</span>, or the variable <span class = "rbcode">spaghetti</span>; It doesn't matter, although in your own code it <em>is</em> a good idea to label your variables in a way that is expressive.
     </p>
     <p>
       As mentioned above, array objects are index by integers. Therefore, to access an element in an array, all one needs to do is reference the object by it's index in the array. For example, if we wanted to access the element "hello" in array <span class = "rbcode">x</span> above, all we would need to do is call the array and reference the "hello" element's index, which in this case is 2 (remember that indexing begins at 0 and since "hello" is the third element in the array it's index is 2):
       <pre class = "prettyprint lang-rb linenums">
-        <code>
-          &gt;&gt; x[2]
-          &gt;&gt; #=> "Hello"
-        </code>
+      &gt;&gt; x[2]
+      &gt;&gt; #=> "Hello"
       </pre>
       As we can see referencing the the second index in the array x results in "hello" being printed to the terminal (as signified by the "#=>" character).
     </p>
     <p>
       Notably, array elements can be assigned to specific indicies--or reassigned if an element already exists--in a similar fashion. If we want to add the element "foo" to the array <span class = "rbcode">x</span> as it's fourth element, we can do so by simply typing:
       <pre class = "prettyprint lang-rb linenums">
-        <code>
-          &gt;&gt; x[4] = 'foo'
-          &gt;&gt; x
-          &gt;&gt; #=> [1, 2, 'hello', 'world', 'foo']
-        </code>
+      &gt;&gt; x[4] = 'foo'
+      &gt;&gt; x
+      &gt;&gt; #=> [1, 2, 'hello', 'world', 'foo']
       </pre>
       Likewise, if we wanted to change the fifth element from "foo" to "bar", we would apply the same code again, this time assigning the fourth index to "bar" instead of "foo":
       <pre class = "prettyprint lang-rb linenums">
-        <code>
-          &gt;&gt; x
-          &gt;&gt; #=> [1, 2, 'hello', 'world', 'foo']
-          &gt;&gt; x[4] = 'bar'
-          &gt;&gt; x
-          &gt;&gt; #=> [1, 2, ,'hello', 'world', 'bar']
-        </code>
+      &gt;&gt; x
+      &gt;&gt; #=> [1, 2, 'hello', 'world', 'foo']
+      &gt;&gt; x[4] = 'bar'
+      &gt;&gt; x
+      &gt;&gt; #=> [1, 2, ,'hello', 'world', 'bar']
       </pre>
       There are other was to add elements to existing arrays, so readers should consult the Ruby documentation and ensure that they are familiar with these techniques.
     </p>
