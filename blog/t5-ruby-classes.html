@@ -1,23 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Ruby Classes</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
   <link type="text/css" rel="stylesheet" href="../stylesheets/blog-stylesheet.css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js">
+  </script>
 </head>
 <body>
 <div class = "overlay">
 <div class="blog-post-background">
 <main>
-  <h1>Main title</h1>
-  <h2>Sub-title</h2>
-  <h4>Date</h4>
+  <h1>Ruby Classes</h1>
+  <h2>An Introduction</h2>
+  <h4>21 January 2015</h4>
 
   <section>
-    <h3>Heading</h3>
+    <h3>Organizing Behaviors</h3>
     <p>
-      Add body text.
+      Everything you work with in Ruby is an <em>object</em> and every object is, in turn, an instance of a particular <em>class</em>. For the most part, a class is simply a collection of methods that determine an instance of the class' attributes and capabilities. The purpose of a class is to package a set of behaviors (methods) together so that all instances of that class can be created and can be expected to operate the same way. For example, let's say we created a <span class = "rbcode">Student</span> class and that we endow the class with the methods <span class = "rbcode">study</span> and <span class = "rbcode">take_test</span>. Then, every time we instantiate a new instance of the <span class = "rbcode">Student</span> class (more on this below), that object will be able to study and take tests. Any time you plan on having a set of objects that you would like to share a similar set of characteristics and behaviors, you should organize them into classes.
+    </p>
+    <h3>A Substantive Example</h3>
+    <p>
+    Let's say that you live in the small town of Sunnydale, California, which is currently being overrun by vampires, demons, and other forces of darkness. You, as <em>Watcher</em>, must prepare a set of <em>Slayers</em> to combate the evil forces. You would like for all of the slayers you prepare to share the same set of combat skills, so you organize them into a Ruby class.
+    </p>
+    <p>
+    Each slayer you train knows how to <span class = "rbcode">punch</span>, <span class = "rbcode">kick</span>, and <span class = "rbcode">stake</span> vampires. However, after you train them they still have no experience. Thus, when initialized, their experience is 0. In Ruby, this setup looks like the following:
+    <pre class = "prettyprint lang-rb linenums">
+    class Slayer
+      @@vampires = 100
+
+      def initialize
+        @experience = 0
+      end
+
+      def punch
+        "Pow!"
+      end
+
+      def kick
+        "Hiya!"
+      end
+
+      def stake
+        @@vampires -= 1
+        @experience += 1
+        puts "You staked a vampire!"
+        puts "There are now #{@@vampires} vampires left."
+        puts "Your experience is now #{@experience}!"
+      end
+    end </pre>
+    </p>
+    <p>
+      Ruby class names always start with a capital letter. Here, we've defined a class <span class = "rbcode">Slayer</span>, that will determine the behavior of all particular slayers that come henceforth. The <span class = "rbcode">initialize</span> method, if present, executes each time a new instance of the <span class = "rbcode">Slayer</span> class is created. In this case, each slayer is given an experience level of 0 when created. The variable "experience" is preceded by the "at" (&#64;) symbol, to signify that it is an "instance variable". Instance variables are only visible to the object within which they belong. In other words, only a particular instance of a slayer can see his/her experience level.
+    </p>
+    <p>
+    The other methods possessed by slayers are fairly straightforward. When a slayer punches a vampire, "Pow!" is returned. "Hiya!" follows after a slayer has kicked a vampire. When a slayer stakes a vampire, however, the <span class = "rbcode">stake</span> method makes a note of it, decreases by one the total number vampires in Sunnydale, and informs the slayer that his/her experience has gone up a point.
+    </p>
+    <p>
+    To illustrate, let's say you train two slayers, <span class = "rbcode">Buffy</span>, and <span class = "rbcode">Kendra</span>. Instances of user-defined classes are created with the <span class = "rbcode">new</span> method:
+    </p>
+    <p>
+    <pre class = "prettyprint lang-rb linenums">
+    &gt;&gt; Buffy = Slayer.new
+    &gt;&gt; #=> #&lt;Slayer:0x149b3c @experience=0&gt;
+    &gt;&gt; Kendra = Slayer.new
+    &gt;&gt; #=> #&lt;Slayer:0x143e6c @experience=0&gt;</pre>
+    </p>
+    <p>
+    Subsequently, your slayers encounter 3 vampires. <span class = "rbcode">Buffy</span> punches one vampire, kicks another, and then stakes both. <span class = "rbcode">Kendra</span> kicks the third vampire twice before staking him:
+    </p>
+    <p>
+    <pre class="prettyprint lang-rb linenums">
+
+    </pre>
     </p>
   </section>
   <section>
