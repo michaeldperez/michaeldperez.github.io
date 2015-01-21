@@ -21,7 +21,7 @@
     <p>
       Everything you work with in Ruby is an <em>object</em> and every object is, in turn, an instance of a particular <em>class</em>. For the most part, a class is simply a collection of methods that determine an instance of the class' attributes and capabilities. The purpose of a class is to package a set of behaviors (methods) together so that all instances of that class can be created and can be expected to operate the same way. For example, let's say we created a <span class = "rbcode">Student</span> class and that we endow the class with the methods <span class = "rbcode">study</span> and <span class = "rbcode">take_test</span>. Then, every time we instantiate a new instance of the <span class = "rbcode">Student</span> class (more on this below), that object will be able to study and take tests. Any time you plan on having a set of objects that you would like to share a similar set of characteristics and behaviors, you should organize them into classes.
     </p>
-    <h3>A Substantive Example</h3>
+    <h3>How to Slay Vampires with Ruby Classes</h3>
     <p>
     Let's say that you live in the small town of Sunnydale, California, which is currently being overrun by vampires, demons, and other forces of darkness. You, as <em>Watcher</em>, must prepare a set of <em>Slayers</em> to combate the evil forces. You would like for all of the slayers you prepare to share the same set of combat skills, so you organize them into a Ruby class.
     </p>
@@ -53,10 +53,10 @@
     end </pre>
     </p>
     <p>
-      Ruby class names always start with a capital letter. Here, we've defined a class <span class = "rbcode">Slayer</span>, that will determine the behavior of all particular slayers that come henceforth. The <span class = "rbcode">initialize</span> method, if present, executes each time a new instance of the <span class = "rbcode">Slayer</span> class is created. In this case, each slayer is given an experience level of 0 when created. The variable "experience" is preceded by the "at" (&#64;) symbol, to signify that it is an "instance variable". Instance variables are only visible to the object within which they belong. In other words, only a particular instance of a slayer can see his/her experience level.
+      Ruby class names always start with a capital letter. Here, we've defined a class <span class = "rbcode">Slayer</span>, that will determine the behavior of all particular slayers that come henceforth. The <span class = "rbcode">initialize</span> method, if present, executes each time a new instance of the <span class = "rbcode">Slayer</span> class is created. In this case, each slayer is given an experience level of 0 when created. The variable "experience" is preceded by the "at" (<span class = "rbcode">&#64;</span>) symbol, to signify that it is an <strong>instance variable</strong>. Instance variables are only visible to the object within which they belong. In other words, only a particular instance of a slayer can see his/her experience level. In general, instance variables provide information on the <em>state</em> of the particular object. In this case <span class = "rbcode">@experience</span> contains information on a particular slayer's experience level.
     </p>
     <p>
-    The other methods possessed by slayers are fairly straightforward. When a slayer punches a vampire, "Pow!" is returned. "Hiya!" follows after a slayer has kicked a vampire. When a slayer stakes a vampire, however, the <span class = "rbcode">stake</span> method makes a note of it, decreases by one the total number vampires in Sunnydale, and informs the slayer that his/her experience has gone up a point.
+    The other methods possessed by slayers are fairly straightforward. When a slayer punches a vampire, "Pow!" is returned. "Hiya!" follows after a slayer has kicked a vampire. When a slayer stakes a vampire, however, the <span class = "rbcode">stake</span> method makes a note of it, decreases by one the total number vampires in Sunnydale, and informs the slayer that his/her experience has gone up a point. These methods, together with <span class = "rbcode">initialize</span>, are examples of <strong>instance methods</strong>. Instance methods are defined within the confines of a class and can be called by any and all instances of the class.
     </p>
     <p>
     To illustrate, let's say you train two slayers, <span class = "rbcode">Buffy</span>, and <span class = "rbcode">Kendra</span>. Instances of user-defined classes are created with the <span class = "rbcode">new</span> method:
@@ -73,8 +73,121 @@
     </p>
     <p>
     <pre class="prettyprint lang-rb linenums">
+    &gt;&gt; Buffy.punch
+    &gt;&gt; #=> "Pow!"
+    &gt;&gt; Buffy.kick
+    &gt;&gt; #=> "Hiya!"
+    &gt;&gt; Buffy.stake
+    &gt;&gt; #=> "You staked a vampire!"
+    &gt;&gt; #=> "There are now 99 vampires left."
+    &gt;&gt; #=> "Your experience is now 1!"
+    &gt;&gt; Buffy.stake
+    &gt;&gt; #=> "You staked a vampire!"
+    &gt;&gt; #=> "There are now 98 vampires left."
+    &gt;&gt; #=> "Your experience is now 2!"
+    &gt;&gt; Kendra.kick
+    &gt;&gt; #=> "Hiya!"
+    &gt;&gt; Kendra.kick
+    &gt;&gt; #=> "Hiya!"
+    &gt;&gt; Kendra.stake
+    &gt;&gt; #=> "You staked a vampire!"
+    &gt;&gt; #=> "There are now 97 vampires left."
+    &gt;&gt; #=> "Your experience is now 1!"</pre>
+    </p>
+    <p>
+    Notice how each slayer's experience incremented by 1 experience point after each staking? Pretty cool, huh? As you recall, that was because the <span class = "rbcode">@experience</span> instance variable keeps track of the number of times a slayer has staked a vampire.
+    </p>
+    <p>
+      By now you are probably curious about the the <span class = "rbcode">@@vampires</span> variable. The double "at" (<span class = "rbcode">&#64;&#64;</span>) symbol signifies that this is a <strong>class variable</strong>. Class variables differ from instance variables in that their scope is the <em>entire</em> class, as opposed to a single instance of that class. Such variables are useful for storing information pertinent to all instances of the class. In this case there is a set number of vampires and anytime <em>any</em> slayer stakes a vampire, the total number of vampires goes down <em>for all</em> slayers. If <span class = "rbcode">@@vampires</span> were an instance variable, each slayer would have 100 vampires to slay and only their subsample of the total vampire population would decrease with each staking, instead of a total vampire population of 100 shared among all slayers. This would be a disaster, since with each newly-trained slayer the number of vampires would increase geometrically by 100.
+    </p>
+    <p>
+      As a final note, there will be times when you would like to have direct access to particular instance variables (for example, a slayer's experience level). Rather than hard-coding "getter" and "setter" methods like the following,
+    </p>
+    <p>
+    <pre class = "prettyprint lang-rb linenums">
+    def experience
+      @experience
+    end
 
-    </pre>
+    def experience=(experience)
+      @experience = experience
+    end</pre>
+    </p>
+    <p>
+    Ruby provides so-called <span class = "rbcode">attr_*</span> methods that reduce getter and setter methods to a single line of code. To illustrate, if you simply want to read (get) the value of a particular instance variable, instead of hard-coding the getter method above, you can simply place the code: <span class = "rbcode">attr_reader :variable</span> within the class definition, where <span class = "rbcode">variable</span> is the name of the instance variable you'd like to have readable access to. Likewise, if you'd like to set (or reset) an instance variable's value, you can simply use the code within the class definition: <span class = "rbcode">attr_writer :variable</span>. If you want both readable and writable access to a variable, Ruby provides the <span class = "rbcode">attr_accessor</span> method that simultaneously takes care of both.
+    </p>
+    <p>
+    Returning to our example, if we wanted to allow our slayers to be able to recite their level of experience, we could simply re-open the <span class = "rbcode">Slayer</span> class and add the line <span class = "rbcode">attr_reader</span>:
+    </p>
+    <p>
+    <pre class = "prettyprint lang-rb linenums">
+    class Slayer
+      attr_reader :experience
+      @@vampires = 100
+
+      def initialize
+        @experience = 0
+      end
+
+      def punch
+        "Pow!"
+      end
+
+      def kick
+        "Hiya!"
+      end
+
+      def stake
+        @@vampires -= 1
+        @experience += 1
+        puts "You staked a vampire!"
+        puts "There are now #{@@vampires} vampires left."
+        puts "Your experience is now #{@experience}!"
+      end
+    end </pre>
+    </p>
+    <p>
+    Now each slayer can call on their getter method to produce their level of experience:
+    </p>
+    <p>
+    <pre class = "prettyprint lang-rb linenums">
+    &gt;&gt; Buffy.experience
+    &gt;&gt; #=> 2
+    &gt;&gt; Kendra.experience
+    &gt;&gt; #=> 1 </pre>
+    </p>
+    <p>
+    We could even re-open the class and allow slayers to set their own levels of experience. Since we still want to be able to get the experience level, we'd use <span class = "rbcode">attr_accessor :experience</span> instead of both <span class = "rbcode">attr_reader :experience</span> and <span class = "rbcode">attr_writer :experience</span>, since the former performs the functions of both:
+    </p>
+    <p>
+    <pre class = "prettyprint lang-rb linenums">
+    class Slayer
+      attr_accessor :experience
+      @@vampires = 100
+
+      def initialize
+        @experience = 0
+      end
+
+      ...
+
+    end </pre>
+    </p>
+    <p>
+    And now a new slayer, <span class = "rbcode">Faith</span> (or any other slayer for that matter), can come along and set her (their) own experience level:
+    </p>
+    <p>
+    <pre class = "prettyprint lang-rb linenums">
+    &gt;&gt; Faith = Slayer.new
+    &gt;&gt; #=> #&lt;Slayer:0x362h4a @experience=0&gt;
+    &gt;&gt; Faith.experience = 3
+    &gt;&gt; # => 3 </pre>
+    </p>
+    <p>
+    But to be honest, we probably would not like for our slayers to be able to set their experience levels. In this case, <span class = "rbcode">attr_reader</span> is most appropriate.
+    </p>
+    <p>
+    Now that you understand why and how to use classes, you are ready to implement them in your own programs. Just watch out for vampires!
     </p>
   </section>
   <section>
