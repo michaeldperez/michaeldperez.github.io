@@ -67,10 +67,10 @@
     &gt;&gt; "I'm a block!"</pre>
     </p>
     <p>
-    In this case the method <span class = "rbcode">call_a_block</span> receives a block as a parameter, and when it sees <span class = "rbcode">block.call</span> in its method definition, executes the code in the supplied block. In reality, what is happening here is that the method <span class = "rbcode">call_a_block</span> is taking the supplied block and transforming it into a <span class = "rbcode">Proc</span> object, to be subsequently used within the method. It is important to note that labeling the block <span class = "rbcode">&block</span> is arbitrary. Any name can be preceded by the "&" symbol and become a proc. However, the <span class = "rbcode">block.call</span> code would necessarily need to be altered as well.
+    In this case, the method <span class = "rbcode">call_a_block</span> receives a block as a parameter, and when it sees <span class = "rbcode">block.call</span> in its method definition, executes the code in the supplied block. In reality, what is happening here is that the method <span class = "rbcode">call_a_block</span> is taking the supplied block and transforming it into a <span class = "rbcode">Proc</span> object, to be subsequently used within the method. It is important to note that labeling the block <span class = "rbcode">&block</span> is arbitrary. Any name can be preceded by the "&" symbol and become a proc. However, the <span class = "rbcode">block.call</span> code would necessarily need to be altered as well.
     </p>
     <p>
-    At the moment this might seem confusing, but it should not be once we understand what a <span class = "rbcode">Proc</span> is, and how it differs from a <span class = "rbcode">block</span>.
+    At the moment this might seem confusing, but it should become clear once we understand what a <span class = "rbcode">Proc</span> is, and how it differs from a <span class = "rbcode">block</span>.
     </p>
     <h4>Procs</h4>
     <p>
