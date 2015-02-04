@@ -5,24 +5,170 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
   <link type="text/css" rel="stylesheet" href="../stylesheets/blog-stylesheet.css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js">
+  </script>
 </head>
 <body>
 <div class = "overlay">
 <div class="blog-post-background">
 <main>
-  <h1>Main title</h1>
-  <h2>Sub-title</h2>
-  <h4>Date</h4>
+  <h1>Comparison:</h1>
+  <h2>Ruby Classes vs. JavaScript Constructor Functions</h2>
+  <h4>4 February 2015</h4>
 
   <section>
-    <h3>Heading</h3>
+    <h3>Classes and Constructors: Blueprints for Objects</h3>
     <p>
-      Add body text.
+    When working with object-oriented languages such as Ruby and JavaScript, you'll often want to group objects that share similar characteristics and behaviors, as well as have the freedom to create new instances of these objects. You can think of a "class" as being a blueprint for these objects: a design schematic that includes the methods and attributes defined by the class. Another way to think about a class is as a set of objects that all share the same features and capabilities, which they inherit from the class.
+    </p>
+    <p>
+    While both Ruby and JavaScript share the notion of a class, the way classes are implemented differs in each language. For example, in Ruby, classes are defined by declaring a <span class = "rbcode">class</span> object, whereas in JavaScript they are defined by declaring a (specific type of) <span class = "rbcode">function</span> or function expression. Here I'll examine some of the basic differences between Ruby classes and what are equivalently referred to in JavaScript as "Constructors" or "Constructor functions." Throughout, I'll highlight the differences and similarities with a running car class example. I'll first examine classes in Ruby, so as to establish a "base-case" with which to compare classes in JavaScript. (For a primer on Ruby classes, see my previous <a href="./t5-ruby-classes.html">post</a>.)
+    </p>
+    <h3>Ruby Classes</h3>
+    <p>
+    Let's begin with the basic schematic of a Ruby class:
+    <pre class = "prettyprint lang-rb linenums">
+    class ClassName
+      def initialize(parameter1,...,parameterN)
+        @parameter1 = value1
+        ...
+        @parameterN = valueN
+      end
+
+      def method_one(params)
+        # method body
+      end
+
+      ...
+
+      def method_n(params)
+        #method body
+      end
+    end</pre>
+    All classes in Ruby begin by declaring a class with the <span class = "rbcode">class</span> keyword, followed by the capitalized name of the class. Each class may make use of an <span class = "rbcode">initialize</span> method, optionally defined with any number of parameters. These parameters, prefixed with the &#64; symbol, typically become the class's "instance variables." These are variables whose scope is within the current object (instance of the class). The rest of a Ruby class's body consists of instance methods. These methods are declared with the <span class = "rbcode">def</span> keyword, followed by the method's lowercase name. They too, may or may not include a set of parameters to be used within the method's body. Inside the body of a method is the code instructing the instance of the object how to behave upon receiving the message (i.e. upon the method begin called by the object). Finally, each method and every class is closed by an <span class = "rbcode">end</span> keyword.
+    </p>
+    <p>
+    If the idea of a class still seems abstract, a concrete example should help clear away any confusion.
+    </p>
+    <p>
+    Say you wanted to create a simple <span class = "rbcode">Car</span> class that initializes with the car's make, model, and year, and is capable of accelerating, decelerating, and parking. In addition, we'll include a <span class = "rbcode">pink_slip</span> method that logs to the console the car's information. Such a class may (very simply) look like the following:
+    <pre class = "prettyprint lang-rb linenums">
+    class Car
+      def initialize(make,model,year)
+        @make = make
+        @model = model
+        @year = year
+        @speed = 0
+      end
+
+      def accelerate(to_mph)
+        @speed = to_mph
+        puts "Accelerating to #{@speed} miles per hour."
+      end
+
+      def decelerate(to_mph)
+        @speed = to_mph
+        puts "Slowing down to #{@speed} miles per hour."
+      end
+
+      def speedometer
+        puts "#{@speed} mph"
+      end
+
+      def park
+        @speed = 0
+      end
+
+      def pink_slip
+        puts "#{@year} #{@make} #{@model}"
+      end
+    end
+    </pre>
+    Here we have a class capable of "creating" a new vehicle. When initialized, the <span class = "rbcode">Car</span> class accepts information regarding the car's make, model, and year. Once created each car is capable of accelerating and decelerating to a specific speed, is able to park, as well as display it's information. I've also added a <span class = "rbcode">speedometer</span> method, which is simply a modified getter method that returns the car's current speed.
+    </p>
+    <p>
+    Let's see the <span class = "rbcode">Car</span> class in action!:
+    <pre class = "prettyprint lang-rb linenums">
+    &gt;&gt; hoopty = Car.new("Ford","Pinto",1976)
+    &gt;&gt; #=> #&lt;Context::Car:0x000000011a6db8 @make="Ford", @model="Pinto", @year=1976, @speed=0&gt;
+    &gt;&gt; hoopty.accelerate(25)
+    &gt;&gt; #=> Accelerating to 25 miles per hour.
+    &gt;&gt; hoopty.speedometer
+    &gt;&gt; #=> 25 mph
+    &gt;&gt; hoopty.decelerate(10)
+    &gt;&gt; #=> Slowing down to 10 miles per hour.
+    &gt;&gt; hoopty.speedometer
+    &gt;&gt; #=> 10 mph
+    &gt;&gt; hoopty.park
+    &gt;&gt; hoopty.speedometer
+    &gt;&gt; #=> 0 mph
+    &gt;&gt; hoopty.pink_slip
+    &gt;&gt; #=> 1976 Ford Pinto
+
+    &gt;&gt; dream_car = Car.new("BMW", "M6", 2016)
+    &gt;&gt; #&lt;Context::Car:0x000000010ee060 @make="BMW", @model="M6", @speed=0, @year=2016&gt;
+    &gt;&gt; dream_car.accelerate(45)
+    &gt;&gt; #=> Accelerating to 45 miles per hour.
+    &gt;&gt; dream_car.pink_slip
+    &gt;&gt; #=> 2016 BMW M6</pre>
+    As we can see, a new car is created with a call to <span class = "rbcode">Car.new</span>, is assigned a name (<span class = "rbcode">hoopty</span>), and given it's characteristics (i.e. <span class = "rbcode">make</span>, <span class = "rbcode">model</span>, and <span class = "rbcode">year</span>). This information is output on line two, where we see each characteristic assigned to the specific instance variable. Each of the methods is called by referring to the object's name, followed by a dot ("."), and the name of the method. Each of the method calls, as well as their output, is displayed on lines 3 through 15. Beginning on line 17, we've initialized a new car, called <span class = "rbcode">dream_car</span>, to demonstrate how each instance of the <span class = "rbcode">Car</span> class shares the same characteristics and methods. They differ only in the values attached to their instance methods.
+    </p>
+    <p>
+      If we wanted to make modifications to the <span class = "rbcode">Car</span> class, such as adding characteristics like <span class = "rbcode">color</span>, or new methods like <span class = "rbcode">honk_horn</span> we'd have to "re-open" the car class to include the additions and make any desired changes:
+    <pre class = "prettyprint lang-rb linenums">
+    class Car
+      def initialize(make, model, year, color)
+        @make = make
+        @model = model
+        @year = year
+        @color = color
+        @speed = 0
+      end
+
+      ...
+
+      def pink_slip
+        puts "#{@year} #{@color} #{@make} @{@model}"
+      end
+
+      def honk_horn
+        puts "Hoooooooonnnnnnnkkkkkk!!!"
+      end
+    end</pre>
+    Afterward, we could re-create our <span class = "rbcode">Car</span> instances and access the new methods and information:
+    <pre class = "prettyprint lang-rb linenums">
+    &gt;&gt; hoopty = Car.new("Ford", "Pinto", 2016, "Yellow")
+    &gt;&gt;#=> #&lt;Context::Car:0x000000010ee060 @make="Ford", @model="Pinto", @speed=0, @year=1976, @color="Yellow"&gt;
+    &gt;&gt; hoopty.honk_horn
+    &gt;&gt; #=> Hoooooooonnnnnnnkkkkkk!!!
+    &gt;&gt; hoopty.pink_slip
+    &gt;&gt; #=> 1976 Yellow Ford Pinto</pre>
+    </p>
+    <h3>JavaScript Constructor Functions</h3>
+    <p>
+    JavaScript Constructor Functions provides the same functionality as a class in Ruby. The basic blueprint of a constructor functions is as follows:
+    <pre class ="prettyprint lang-js linenums">
+    function ConstructorName (param1,...,paramN) {
+      this.param1 = param1;
+      this.param2 = param2;
+      ...
+      this.paramN = paramN;
+      this.method1 = function(){...};
+      ...
+      this.methodN = function(){...};
+    }</pre>
+    The basic setup is fairly similar to Ruby, but with notable and important differences. A class, or <span class = "rbcode">Constructor</span>, is declared with the <span class = "rbcode">function</span> keyword (instead of the <span class = "rbcode">class</span> keyword in Ruby), followed by the class/Constructor's capitalized name (as in Ruby). Also similar to Ruby, the Constructor's properties (e.g. instance variables) are declared within an initial set of parentheses. This is followed by a set of brackets ({...}) that contain the Constructor's body. Within the body, the Constructor's properties are set to their given values. Unlike Ruby, the Constructor's methods are set in a manner similar to the Constructor's properties, the only difference being that instead of a value or object the method is followed by a <span class = "rbcode">function</span> call.
+    </p>
+    <p>
+    The most notable difference is the <span class = "rbcode">this</span> keyword prefixed to each property and method. In this context, the <span class = "rbcode">this</span> keyword refers to the instance of the constructor itself. In a sense, one can think of it when used together with Constructor functions as acting similar to the &#64; symbol before instance variables in Ruby; that is, as determining the scope of the properties and methods to be contained to the instance of the Constructor.
+    </p>
+    <p>
+    Let's take a look at how our <span class = "rbcode">Car</span> class from Ruby would be implemented in JavaScript:
     </p>
   </section>
   <section>
     <div id="nav-footer">
-      <p class="post-nav"><a href="#">Previous</a> |</p>
+      <p class="post-nav"><a href="c6-stereotype-threat.html">Previous</a> |</p>
       <p class="post-nav"><a href="./index.html">Home</a> |</p>
       <p class="post-nav"><a href="#">Next</a></p>
     </div>
