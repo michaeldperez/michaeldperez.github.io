@@ -48,7 +48,7 @@
         #method body
       end
     end</pre>
-    All classes in Ruby begin by declaring a class with the <span class = "rbcode">class</span> keyword, followed by the capitalized name of the class. Each class may make use of an <span class = "rbcode">initialize</span> method, optionally defined with any number of parameters. These parameters, prefixed with the &#64; symbol, typically become the class's "instance variables." These are variables whose scope is within the current object (instance of the class). The rest of a Ruby class's body consists of instance methods. These methods are declared with the <span class = "rbcode">def</span> keyword, followed by the method's lowercase name. They too, may or may not include a set of parameters to be used within the method's body. Inside the body of a method is the code instructing the instance of the object how to behave upon receiving the message (i.e. upon the method begin called by the object). Finally, each method and every class is closed by an <span class = "rbcode">end</span> keyword.
+    All classes in Ruby begin by declaring a class with the <span class = "rbcode">class</span> keyword, followed by the capitalized name of the class. Each class may make use of an <span class = "rbcode">initialize</span> method, optionally defined with any number of parameters. These parameters, prefixed with the &#64; symbol,  become the class's "instance variables." These are variables whose scope is within the current object (instance of the class). The rest of a Ruby class's body consists of instance methods. These methods are declared with the <span class = "rbcode">def</span> keyword, followed by the method's lowercase name. They too, may or may not include a set of parameters to be used within the method's body. Inside the body of a method is the code instructing the instance of the object how to behave upon receiving the message (i.e. upon the method begin called by the object). Finally, each method and every class is closed by an <span class = "rbcode">end</span> keyword.
     </p>
     <p>
     If the idea of a class still seems abstract, a concrete example should help clear any confusion.
@@ -147,9 +147,9 @@
     &gt;&gt; hoopty.pink_slip
     &gt;&gt; #=> 1976 Yellow Ford Pinto</pre>
     </p>
-    <h3>JavaScript Prototypes & Constructor Functions</h3>
+    <h3>JavaScript Constructor Functions</h3>
     <p>
-    JavaScript prototypes and Constructor functions provide the same functionality as a class in Ruby. The basic blueprint of a Constructor function is as follows:
+    JavaScript Constructor functions provide the same functionality as a class in Ruby. The basic blueprint of a Constructor function is as follows:
     <pre class ="prettyprint lang-js linenums">
     function ConstructorName (param1,...,paramN) {
       this.param1 = param1;
@@ -160,13 +160,13 @@
       ...
       this.methodN = function(){...};
     }</pre>
-    The basic setup is fairly similar to Ruby, but with notable and important differences. A class, or <span class = "rbcode">prototype</span>, is declared with the <span class = "rbcode">function</span> keyword (instead of the <span class = "rbcode">class</span> keyword in Ruby), followed by the class/prototype's capitalized name (as in Ruby). All JavaScript objects inherit their properties and methods from their prototype, which is why it can be thought of as the equivalent to a Ruby class. The specific function that creates a new prototype is called a <span class = "rbcode">Constructor</span> function.
+    The basic setup is fairly similar to Ruby, but with notable differences. A <span class = "rbcode">Constructor</span> is declared with the <span class = "rbcode">function</span> keyword (instead of the <span class = "rbcode">class</span> keyword in Ruby), followed by the class's capitalized name (as in Ruby).
     </p>
     <p>
-    Also similar to Ruby, the prototype's properties (similar to instance variables in Ruby) are declared within an initial set of parentheses. This is followed by a set of brackets ({...}) that contain the Constructor's body. Within the Constructor's body, the prototype's properties are set to their given values. Unlike Ruby, the prototype's methods are set in a manner similar to it's properties; the only difference being that instead of a value or object the method is followed by a <span class = "rbcode">function</span> call.
+    Also similar to Ruby, the Constructor's properties (similar to instance variables in Ruby) are declared within an initial set of parentheses. This is followed by a set of brackets ({...}) that contain the Constructor's body. Within the Constructor's body, the properties are set to their given values. Unlike Ruby, the Constructor's methods are set in a manner similar to it's properties; the only difference being that instead of a value or object the method is followed by a <span class = "rbcode">function</span> call.
     </p>
     <p>
-    The most notable difference is the <span class = "rbcode">this</span> keyword prefixed to each property and method. In this context, the <span class = "rbcode">this</span> keyword refers to the instance of the prototype itself. In a sense, one can think of it when used together with Constructor functions as acting similar to the &#64; symbol before instance variables in Ruby; that is, as determining the scope of the properties and methods to be contained to the instance of the prototype.
+    The most notable difference is the <span class = "rbcode">this</span> keyword prefixed to each property and method. In this context, the <span class = "rbcode">this</span> keyword refers to the instance of the class itself. In a sense, one can think of it when used together with Constructor functions as acting similar to the &#64; symbol before instance variables in Ruby; that is, as determining the scope of the properties and methods to be contained to the instance of the object.
     </p>
     <p>
     Let's take a look at how our initial <span class = "rbcode">Car</span> class from Ruby can be implemented with a Constructor function in JavaScript:
@@ -197,13 +197,13 @@
     Let's examine the <span class = "rbcode">Car</span> Constructor code and compare it with the <span class = "rbcode">Car</span> class created in Ruby.
     </p>
     <p>
-    As mentioned above, each of the <span class = "rbcode">Car</span>'s' properties begins with the <span class = "rbcode">this</span> keyword. It may help to think about a prototype's properties by thinking of them in terms of complete sentences, as in "Set <strong>this</strong> instance of Car's &lt;property&gt; to &lt;value&gt;." So, if we were to create an instance of the Car prototype, which we'll call <span class = "rbcode">myCar</span>, and set it's <span class = "rbcode">make</span> property to "Honda," we can think of "<span class = "rbcode">this.make = "Honda"</span>" as signifying "Set myCar's make property to 'Honda'." And likewise for the other properties.
+    As mentioned above, each of the <span class = "rbcode">Car</span>'s' properties begins with the <span class = "rbcode">this</span> keyword. It may help to think about properties by thinking of them in terms of complete sentences, as in "Set <strong>this</strong> instance of Car's &lt;property&gt; to &lt;value&gt;." So, if we were to create an instance of Car, which we'll call <span class = "rbcode">myCar</span>, and set it's <span class = "rbcode">make</span> property to "Honda," we can think of "<span class = "rbcode">this.make = "Honda"</span>" as signifying "Set myCar's make property to 'Honda'." And likewise for the other properties.
     </p>
     <p>
-      Following the properties are the prototype's methods. Within the Constructor function these are also set using the <span class = "rbcode">this</span> keyword. However, rather than assignment, methods are followed by a function declaration. Therefore, when you see <span class = "rbcode">this.methodName = function (){}</span> within the body of a Constructor function, you may think of it as the equivalent to <span class = "rbcode">def method_name; #code; end</span> within a declared class in Ruby.
+      Following the properties are the Constructor's methods. Within the Constructor function these are also set using the <span class = "rbcode">this</span> keyword. However, rather than assignment, methods are followed by a function declaration. Therefore, when you see <span class = "rbcode">this.methodName = function (){}</span> within the body of a Constructor function, you may think of it as the equivalent to <span class = "rbcode">def method_name; #code; end</span> within a Ruby class.
     </p>
     <p>
-    Now let's take a look at the <span class = "rbcode">Car</span> prototype in action:
+    Now let's take a look at the <span class = "rbcode">Car</span> Constructor in action:
     <pre class = "prettyprint lang-js linenums">
     &gt;&gt; myCar = new Car("Honda", "Civic", 2010);
     &gt;&gt; console.log(myCar);
@@ -228,20 +228,76 @@
     &gt;&gt; 0 mph
     &gt;&gt; myCar.pinkSlip();
     &gt;&gt; 2010 Honda Civic</pre>
-    The first thing to note, is that like in Ruby, a new instance of a class (prototype) is created using the <span class = "rbcode">new</span> keyword. The only difference is that it comes before the name of the prototype in JavaScript, rather than as a class method as in Ruby. I've logged the contents of the prototype to the console to illustrate that, similarly to Ruby, you can list all of the prototype's methods (and properties). Lines 13 to 23 just illustrate the various calls to the methods as was done with Ruby. Perhaps the most noticeable difference between method calls in Ruby and method calls in JavaScript is that in the latter, even when a function accepts no arguments, it must be followed by an empty set of parentheses. This helps distinguish a prototype's methods from it's properties. In addition, all calls must conclude with a semicolon.
+    The first thing to note, is that like in Ruby, a new instance of a class is created using the <span class = "rbcode">new</span> keyword. The only difference is that it comes before the name of the class in JavaScript, rather than as a class method as in Ruby. I've logged the contents of the Constructor to the console to illustrate that, similarly to Ruby, you can list all of the methods (and properties). Lines 13 to 23 just illustrate the various calls to the methods as was done with Ruby. Perhaps the most noticeable difference between method calls in Ruby and method calls in JavaScript is that in the latter, even when a function accepts no arguments, it must be followed by an empty set of parentheses. This helps distinguish methods from properties, which are not followed by parentheses. In addition, all calls must conclude with a semicolon.
     </p>
     <p>
-    JavaScript prototype's properties can also be accessed in a reader/writer manner immediately after construction. For example, our <span class = "rbcode">myCar</span> object's <span class = "rbcode">make</span> can be logged to the console simply by typing <span class = "rbcode">myCar.make</span>, and it can be reassigned just by entering <span class = "rbcode">myCar.make = "Hyundai"</span>. If we wanted this functionality from our class instances in Ruby then we would have to do one of two things: either we would have to create reader and writer methods inside of the class's body, or utilize the <span class = "rbcode">attr_accessor</span> method. You may or may not like the idea of public properties and methods. Rest assured that there are ways to make these features <a href="http://javascript.crockford.com/private.html">private</a>.
+    A class's properties can also be accessed in a reader/writer manner immediately after construction. For example, our <span class = "rbcode">myCar</span> object's <span class = "rbcode">make</span> can be logged to the console simply by typing <span class = "rbcode">myCar.make</span>, and it can be reassigned just by entering <span class = "rbcode">myCar.make = "Hyundai"</span>. If we wanted this functionality from our class instances in Ruby then we would have to do one of two things: either we would have to create reader and writer methods inside of the class's body, or utilize the <span class = "rbcode">attr_accessor</span> method. You may or may not like the idea of public properties and methods. Rest assured that there are ways to make these features <a href="http://javascript.crockford.com/private.html">private</a>.
     </p>
     <p>
-
+    Adding and/or changing properties and methods in a class is just as easy in JavaScript as it is in Ruby. One way to add/alter functionality and composition is to go back to the original Constructor function and add methods and properties, just as you would in Ruby. For instance, we can add the <span class = "rbcode">color</span> property and <span class = "rbcode">honkHorn</span> method to our Constructor function, like so:
     <pre class = "prettyprint lang-js linenums">
-    &gt;&gt;
+    function Car (make, model, year, color) {
+      this.make = make;
+      this.model = model;
+      this.year = year;
+      this.color = color;
+      this.speed = 0;
+      ...
+      this.pinkSlip = function () {
+        console.log(this.year + " " + this.color + " " + this.make + " " + this.model);
+      };
+      this.honkHorn = function () {
+        console.log("Hoooooooonnnnnnnkkkkkk!!!");
+      };
+    }</pre>
+    Another interesting feature of JavaScript directly related to class creation is an object's <span class = "rbcode">prototype</span>. When an object gets a request for a property or method that it does not possess, it looks to it's <span class = "rbcode">prototype</span>. A <span class = "rbcode">prototype</span> can be thought of as a holding container for properties and methods all instances of a Constructor inherit upon creation. Properties and methods contained within a <span class = "rbcode">prototype</span> differ from those comprising the Constructor itself, in that in the latter case, all instances of the Constructor have their <em>own</em> instances of these properties and methods. The properties and methods in an object's prototype, however, are shared by <em>all</em> instances of a Constructor. Storing methods and properties in a prototype has the benefit of saving memory since all instances share a single property or method instead of having to store their own. Therefore, it is generally considered best practice to store non-unique properties and methods in the prototype instead of within the constructor.
+    </p>
+    <p>
+    To illustrate, pretend we wanted to add a new <span class = "rbcode">turnOnHeadlights</span> method to all further instances of the <span class = "rbcode">Car</span> Constructor. Rather than going back into the Constructor function, and because it is best practice to store all methods in the <span class = "rbcode">prototype</span>, we could simply type:
+    <pre class="prettyprint lang-js linenums">
+    Car.prototype.turnOnHeadlights = function () {
+        console.log("Headlights on!")
+    };</pre>
+    Now, all instances of our <span class = "rbcode">Car</span> Constructor have access to the <span class = "rbcode">turnOnHeadlights</span> function, even our previous <span class = "rbcode">myCar</span> object:
+    <pre class = "prettyprint lang-js linenums">
+    &gt;&gt; myCar.turnOnHeadlights();
+    &gt;&gt; Headlights on!</pre>
+    In general, adding properties and/or methods to a <span class = "rbcode">prototype</span> follows the general syntax: <span class = "rbcode">ClassName.prototype.methodName</span> (or <span class = "rbcode">propertyName</span>). You can even add properties and methods to JavaScript's built-in objects, such as <span class = "rbcode">Array</span>s, but I'd advise against doing so. The last thing you want to do is screw up JS's basic foundation.
+    </p>
+    <p>
+    Before we conclude, we should follow best practices and clean up our <span class = "rbcode">Car</span> constructor using <span class = "rbcode">Car</span>'s <span class = "rbcode">prototype</span> and an <span class = "rbcode">object</span> to store the shared functions:
+    <pre class = "prettyprint lang-js linenums">
+    function Car (make, model, year, color) {
+      this.make = make;
+      this.model = model;
+      this.year = year;
+      this.color = color;
+      this.speed = 0;
+    }
+    Car.prototype = {
+      accelerate: function (to_mph){
+        this.speed = to_mph;
+        console.log("Accelerating to " + this.speed + " miles per hour.");},
+      decelerate: function (to_mph) {
+        this.speed = to_mph;
+        console.log("Slowing down to " + this.speed + " miles per hour.");},
+      speedometer: function () { console.log(this.speed + " mph");},
+      park: function () {this.speed = 0;},
+      pinkSlip: function () {console.log(this.year + " " + this.color + " " + this.make + " " + this.model);},
+      honkHorn: function () { console.log("Hoooooooonnnnnnnkkkkkk!!!");}
+    }</pre>
+    With this new arrangement we can access our instance object's properties and methods just as before. The only change is that now each <span class = "rbcode">Car</span> instance shares it's methods with all other instances. Each instance, however, still receives it's own properties.
     </p>
     <h3>Take Aways</h3>
     <p>
     <ul>
-      <li>Classes in JavaScript, called prototypes, are created using Constructor functions.</li>
+      <li>Classes in JavaScript are created using Constructor functions.</li>
+      <li>Like Ruby, JavaScript class instances are created with the <span class = "rbcode">new</span> keyword. However, it precedes the call to the class.</li>
+      <li>Constructor functions can store properties, which are similar to instance variables in Ruby.</li>
+      <li>Properties can be declared as parameters to a new instance of a Constructor, in an operation equivalent to Ruby's initialize method.</li>
+      <li>Methods can also be stored in a Constructor, however instead of assignment they are followed by a function declaration.</li>
+      <li>It is best practice to store methods in a Constructor's <span class = "rbcode">prototype</span>. This saves memory and differs from storing methods within a Constructor in that all instances share the methods rather than are created with their own.</li>
+
     </ul>
   </section>
   <section>
