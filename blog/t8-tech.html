@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Recursion</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
   <link type="text/css" rel="stylesheet" href="../stylesheets/blog-stylesheet.css" />
@@ -12,14 +12,47 @@
 <div class = "overlay">
 <div class="blog-post-background">
 <main>
-  <h1>Main title</h1>
-  <h2>Sub-title</h2>
-  <h4>Date</h4>
+  <h1>Recursion</h1>
+  <h2>With Examples in Ruby</h2>
+  <h4>12 February 2015</h4>
 
   <section>
-    <h3>Heading</h3>
+    <h3>What is Recursion?</h3>
     <p>
-      Add body text.
+      The notion of recursion can be easily stated yet often difficult to comprehend. Simply put, recursion is a process of repeating elements in a self-similar way, where the term "self-similar" means that an object is exactly, or near-exactly similar, to a part of itself. If your eyes just went glassy after reading that definition, don't worry. The notion should become clear by the end of this post.
+    </p>
+    <p>
+      Essentially, recursion is a way of thinking about, and solving problems. It's a way of breaking down a problem into ever smaller sub-problems, until the problem becomes so small that it can be solved trivially. The trick in breaking down the problem to such an extent is taking note of the fact that solving a small part of the problem is essentially the same (procedurally) as solving the problem as whole. Therefore, once the problem can be broken down to solving a very small and trivial part of the entire problem, solving the remaining portion of the problem becomes straightforward. Solving a recursive <em>function</em>, for example, involves identifying a <strong>base case</strong>, or <strong>edge condition</strong> that signifies an easily solvable portion of the problem, and typically represents the first or terminating element or task in a procedure. Since this small part of the problem is similar to the entire problem, the function can then be called on itself to solve the remaining portion of the problem. Thus, one way to think of a recursive function is as a function that calls itself.
+    </p>
+    <h3>Examples</h3>
+    <p>
+    Some examples should help bring clarity to the notions of recursion and recursive functions. Here, we'll look at four examples of solving recursive functions with the <span class = "rbcode">Ruby</span> programming language. First, we'll look at how to determine the factorial of a number, followed by creating a program that finds the <span class = "rbcode">n</span>th digit in the famed Fibonacci sequence. Then we'll look at recursive methods for finding the sum of an array of digits, the procedure of which incidentally is similar to recursively reversing a string. Finally, we'll conclude with a program that tests whether a given string is a palindrome using recursion.
+    </p>
+    <h4>Factorials</h4>
+    <p>
+      It seems as if every discussion of recursion and recursive functions begins with factorials, so we'll follow with that tradition here.
+    </p>
+    <p>
+      For those unfamiliar with factorials, the factorial of an integer <span class = "rbcode">n</span>, denoted <span class = "rbcode">n!</span> is the product of multiplying <span class = "rbcode">n</span> by each of the remaining <span class = "rbcode">n-1</span> digits, down to 1. So, for instance, the factorial of 5 (5!) is 5 x 4 x 3 x 2 x 1 = 120. Similarly, the factorial of 3! is 3 x 2 x 1 = 6. The important thing to remember is that the factorial of 0, 0!, is 1 and <em>not</em> 0. This will become key when we determine the factorial of an integer using recursion.
+    </p>
+    <p>
+      Obviously, determining the factorial of an integer does not require using recursion. But it is a simple problem and one that illustrates the use of recursion nicely. Let us begin by assuming we want to find the factorial of the integer 4 (let's keep it simple for now). We know that 4! = 4 x 3 x 2 x 1 = 24. If you look closely, 4! is the same as 4 x 3!, because 3! is 3 x 2 x 1. And examining 3! we see that it is just 3 x 2!, which is just 2 x 1!, and of course 1! is 1. Therefore, the general pattern is <span class = "rbcode">n! = n x (n - 1)!</span>.
+    <pre class = "prettyprint lang-rb linenums">
+    4! = 4 * 3 * 2 * 1
+       = 4 * 3!
+       = 4 * (3 * 2!)
+       = 4 * (3 * (2 * 1!)
+       = 4 * 3 * 2 * 1
+       = 24</pre>
+    </p>
+    <p>
+      If we were to translate this into a <span class = "rbcode">Ruby</span> program, say, <span class = "rbcode">factorial(n)</span>, the logic would be something along the lines of the following for the factorial of 4:
+    <pre class =  "prettyprint lang-rb linenums">
+    factorial(4) = 4 * factorial(3)
+                     * 3 * factorial(2)
+                         * 2 * factorial(1)
+                           * 1 * factorial(0)
+                              * 1 = 24</pre>
     </p>
   </section>
   <section>
