@@ -26,17 +26,17 @@
     </p>
     <h3>Examples</h3>
     <p>
-    Some examples should help bring clarity to the notions of recursion and recursive functions. Here, we'll look at four examples of solving recursive functions with the <span class = "rbcode">Ruby</span> programming language. First, we'll look at how to determine the factorial of a number, followed by creating a program that finds the <span class = "rbcode">n</span>th digit in the famed Fibonacci sequence. Then we'll look at recursive methods for finding the sum of an array of digits, the procedure of which incidentally is similar to recursively reversing a string. Finally, we'll conclude with a program that tests whether a given string is a palindrome using recursion.
+    Some examples should help bring clarity to the notions of recursion and recursive functions. Here, we'll look at five examples of solving recursive functions with the <span class = "rbcode">Ruby</span> programming language. First, we'll look at how to determine the factorial of a number, followed by creating a program that finds the <span class = "rbcode">n</span>th digit in the famed Fibonacci sequence. Then we'll look at recursive methods for finding the sum of an array of digits, the procedure of which is similar to recursively reversing a string. Next, we'll continue with a program that tests whether a given string is a palindrome. Finally, we'll conclude by building a program that determines whether or not a given number is a power of 2.
     </p>
     <h4>Factorials</h4>
     <p>
       It seems as if every discussion of recursion and recursive functions begins with factorials, so we'll follow with that tradition here.
     </p>
     <p>
-      For those unfamiliar with factorials, the factorial of an integer <span class = "rbcode">n</span>, denoted <span class = "rbcode">n!</span> is the product of multiplying <span class = "rbcode">n</span> by each of the remaining <span class = "rbcode">n-1</span> digits, down to 1. So, for instance, the factorial of 5 (5!) is 5 x 4 x 3 x 2 x 1 = 120. Similarly, the factorial of 3! is 3 x 2 x 1 = 6. The important thing to remember is that the factorial of 0, 0!, is 1 and <em>not</em> 0. This will become key when we determine the factorial of an integer using recursion.
+      For those unfamiliar with factorials, the factorial of an integer <span class = "rbcode">n</span>, denoted <span class = "rbcode">n!</span> is the product of multiplying <span class = "rbcode">n</span> by each of the remaining <span class = "rbcode">n-1</span> digits, down to 1. So, for instance, the factorial of 5 (5!) is 5 * 4 * 3 * 2 * 1 = 120. Similarly, the factorial of 3! is 3 * 2 * 1 = 6. The important thing to remember is that the factorial of 0, 0!, is 1 and <em>not</em> 0. This will become key when we determine the factorial of an integer using recursion.
     </p>
     <p>
-      Obviously, determining the factorial of an integer does not require using recursion. But it is a simple problem and one that illustrates the use of recursion nicely. Let us begin by assuming we want to find the factorial of the integer 4 (let's keep it simple for now). We know that 4! = 4 x 3 x 2 x 1 = 24. If you look closely, 4! is the same as 4 x 3!, because 3! is 3 x 2 x 1. And examining 3! we see that it is just 3 x 2!, which is just 2 x 1!, and of course 1! is 1. Therefore, the general pattern is <span class = "rbcode">n! = n x (n - 1)!</span>.
+      Obviously, determining the factorial of an integer does not require using recursion. But it is a simple problem and one that illustrates the use of recursion nicely. Let us begin by assuming we want to find the factorial of the integer 4 (let's keep it simple for now). We know that 4! = 4 * 3 * 2 * 1 = 24. If you look closely, 4! is the same as 4 * 3!, because 3! is 3 * 2 * 1. And examining 3! we see that it is just 3 * 2!, which is just 2 * 1!, and of course 1! is 1. Therefore, the general pattern is <span class = "rbcode">n! = n * (n - 1)!</span>. This general patter will be the code we eventually use to create our program.
     <pre class = "prettyprint lang-rb linenums">
     4! = 4 * 3 * 2 * 1
        = 4 * 3!
@@ -54,12 +54,173 @@
                            * 1 * factorial(0)
                               * 1 = 24</pre>
     </p>
+    <p>
+      As I mentioned before the key is noting that 0! = 1. This, therefore, represents our base case from which we are able to solve a larger factorial problem. In <span class = "rbcode">Ruby</span> the program may look like something similar to the following:
+    <pre class = "prettyprint lang-rb linenums">
+    def factorial(n)
+      if n == 0
+        return 1
+      else
+        return n * factorial(n-1)
+      end
+    end
+
+    &gt;&gt; factorial(6)  #=> 720
+    &gt;&gt; factorial(10) #=> 3628800</pre>
+    </p>
+    <p>
+      Let's think about how this program works by working through the logic of determining the factorial of 6. When we plug in 6 to our <span class = "rbcode">factorial</span> program if first checks whether the number we entered is 0. Since it is not, it moves on and returns 6 * factorial(5). Note here that the function is calling itself. Well, when the program receives 6 * factorial(5) the second part acts as it's own subprogram and asks if 5 = 0, and since it doesn't, it returns 5 * factorial(4). So now our program is in the overall process of return 6 * 5 * factorial(4). It repeats the same process for factorial(4), on down to factorial(0), at which point it returns 1. Thus, our initial call to factorial(6) resulted in the program returning 6 * ((factorial(5) = 5 * (factorial(4) = 4 * (factorial(3) = 3 * (factorial(2) = 2 * (factorial(1) = 1 * (factorial(0) = 1))))))) = 720.
+    </p>
+    <p>
+      As you can see, solving a problem recursively involves first identifying a part of the problem that can be solved trivially (here, the factorial of 0), determining the larger pattern, and reapplying the pattern to the rest of the problem by calling a function on itself.
+    </p>
+    <p>
+      With this formula in mind, we'll move more quickly through the remaining examples.
+    </p>
+    <h4>Fibonacci Numbers</h4>
+    <p>
+      The Fibonacci sequence: 0,1,1,2,3,5,8,13... is a series of numbers that occur regularly in nature and are individually determined by adding the previous two numbers together (with the exception of the first two integers).
+    </p>
+    <p>
+      Let's say we want to write a program that receives an index and returns the Fibonacci number related to that index. For example, if the program were to recieve the input of 6 (for the 7th number in the sequence), we'd want our program to return 8.
+    </p>
+    <p>
+      As before, the first thing to do is to determine the base case for solving the problem. Here, there are actually two base cases: index 0 = 0 and index 1 = 1. This is because these numbers are trivially determined since they are not the result of adding together any two integers that precede them.
+    </p>
+    <p>
+      The next step is to identify the general pattern. This was already mentioned in the introduction. Each value is the result of adding the two numbers that precede it in the sequence. Thus, as an expression we have: for a given index <span class = "rbcode">n</span>, <span class = "rbcode">n = ((n-1) + (n-2))</span>.
+    </p>
+    <p>
+      We can then build a program that will receive an index and determine if the index given is either 0 or 1, returning their respective values if true. Otherwise, the program will call itself on the values <span class = "rbcode">n-1</span> and <span class = "rbcode">n-2</span>, like so:
+    <pre class = "prettyprint lang-rb linenums">
+    def fibonacci(n)
+      if n == 0
+        return 0
+      elsif n == 1
+        return 1
+      else
+        return fibonacci(n-1) + fibonacci(n-2)
+      end
+    end
+
+    &gt;&gt; fibonacci(4)  #=> 3
+    &gt;&gt; fibonacci(15) #=> 610</pre>
+    </p>
+    <p>
+      Let's work through the program. First, it receives an index. Say n = 4. It checks whether the 4 is equal to either 1 or 0. Since it is not, it recalls the method twice; once for one less than the index (i.e. fibonacci(3)), and once again for twice less than the index (i.e. fibonacci(2)). This sequence is repeated for fibonnaci(3), which according to our program results in fibonacci(2) + fibonacci(1). This can be reduced to (1 + 0) + 1 = 2. So we have the fibonacci(3) part of our program resulting in 2, to be added to fibonacci(2). This latter value evaluates to fibonacci(1) + fibonacci(0) which are our edge cases. The result is 1 + 0 = 1. Summing the two values together we get 2 + 1 = 3. Thus, fibonacci(4) = 3.
+    </p>
+    <h4>Sum of an Array of Numbers & Reversing a String</h4>
+    <p>
+      <span class = "rbcode">Ruby</span> obviously has the methods <span class = "rbcode">reduce</span> and <span class = "rbcode">reverse</span>, which handle the summing an array of values and reversing a string, respectively. However, both procedures are helpful in illustrating recursion, even if it is not the most efficient method for solving these problems. We'll work through the logic of summing an array of values only, because it is very similar for reversing a string. After we solving the sum problem, the code for reversing a string will be self-evident.
+    </p>
+    <p>
+      As always, we begin by asking ourselves what is the base case for this problem? Unlike the previous examples, the end point may not be as evident in this case. Well, the sum of a single number is itself, so we can tell our program that if the size of our array is 1, then return the value indexed at 0. This will be our edge condition.
+    </p>
+    <p>
+      What then, is the general pattern? The general pattern is as follows. A sum of N integers, 1 + 2 + 3 + ... + n, is the same as 1 + (2 + 3 + ... + n), which itself is equivalent to 1 + (2 + (3 + 4 + ... + n)), and so on, and so on. So if we have an array, we can think of our pattern as array[0] + array[1..-1], or array[0] + [array[1] + array[2..-1]], all the way down. This results in the following program:
+    <pre class = "prettyprint lang-rb linenums">
+      def sum(arr)
+        if arr.length == 1
+          return arr[0]
+        else
+          return arr[0] + sum(arr[1..-1])
+        end
+      end
+
+      &gt;&gt; sum([1,2,3,4])    #=> 10
+      &gt;&gt; sum([5,10,15,20]) #=> 50</pre>
+    </p>
+    <p>
+      By now, the logic should be familiar and you should be able to understand how the program is operating.
+    </p>
+    <p>
+      As a bonus, here's a program that reverses a string, using a similar setup to the <span class = "rbcode">sum</span>  program, only working from the end:
+    <pre class = "prettyprint lang-rb linenums">
+      def reverse_string(str)
+        if str.length == 1
+          return str[0]   # index is unnecessary really, just here for consistency.
+        else
+          return str[-1] + reverse_string(str[0..-2])
+        end
+      end
+
+      &gt;&gt; reverse_string("hello") #=> "olleh"
+      &gt;&gt; reverse_string("world") #=> "dlrow"</pre>
+    </p>
+    <h4>Palindrome</h4>
+    <p>
+      A palindrome is a word or phrase that is the read the same forward and backward. For example, the word "racecar" is the same read from the beginning, as it is read backward from the end. The word "madam" is also a palindrome. We'll create a <span class = "rbcode">palindrome?</span> program that tests whether a word is a palindrome.
+    </p>
+    <p>
+      What is the base case in this example? Can you think of the simplest palindrome? It's a single letter, which is trivially the same read backward or forward. Thus, our edge condition is whether a string consists of a single letter. If so, return the boolean value <span class = "rbcode">true</span>.
+    </p>
+    <p>
+      Now, what is the pattern? This is a bit more tricky. Think of the ways a word can be read; either from the beginning, or from the end. If a word is a palindrome, then the first and last letter must be the same. The same is true for the second letter and the second-to-last letter, until we reach the last pair of letters or a single letter. So our pattern is to check the edges for similarity. If they are similar, move in and check the next two edges for similarity. If we ever encounter a pair that are not the same letter, then the word cannot be a palindrome and our program shall return false. Here's what it could look like:
+    <pre class = "prettyprint lang-rb linenums">
+      def palindrome?(str)
+        return true if str.length <= 1 # required for even-length words
+        if str[0] == str[-1]
+          return palindrome?(str[1..-2])
+        else
+          return false
+        end
+      end
+
+      &gt;&gt; palindrome?("racecar") #=> true
+      &gt;&gt; palindrome?("noon")    #=> true
+      &gt;&gt; palindrome?("abcdba")  #=> false
+      &gt;&gt; palindrome?("hello")   #=> false</pre>
+    </p>
+    <p>
+      Let's run through the logic.
+    </p>
+    <p>
+      If a string is empty (length of 0), or has a length of 1, return <span class = "rbcode">true</span>. This is because empty strings, as well as single letters, are the same regardless of the direction from which one reads.
+    </p>
+    <p>
+      If the length is greater than 1, check if the first and last letters of the string are the same. If so, run the <span class = "rbcode">palindrome?</span> program on the remaining part of the string. That is, from the second letter to the second-to-last-letter. If, at anytime the first and last letters of the string are unequal, return <span class = "rbcode">false</span>, because the string cannot be a palindrome.
+    </p>
+    <h4>Powers of Two</h4>
+    <p>
+      For our last example, we'll build a program the determines whether a given number is a power of two. A power of a given number is that number (the base) raised to an integer (the exponent). So the first five powers of two are 2^0 = 1, 2^1 = 2, 2^2 = 4, 2^3 = 8, 2^4 = 16. Thus, 1, 2, 4, 8, and 16 are all powers of two. It's easy to do the math in our heads for powers this small, but it can quickly become unwieldy. However, with our knowledge of recursion we can create a simple program to do the work for us!
+    </p>
+    <p>
+      The base case is the simplest power of two, which is 1 (2 raised to the 0th power). But what is the general pattern?
+    </p>
+    <p>
+      Let's look at the first five powers we found above. note that 2 is twice the size of 1, 4 is twice the size of 2, 8 is twice the size of 4, and 16 is twice the size of 8. So it would appear that a given power of two is twice the size of the power preceding it. Therefore, our goal for recursion is to reach the smallest power, 1. If we can go from the number we enter down to 1, the original number is a power of two. In other words, if n is a power of two, then so must be n/2. and if n/2 is a power of 2, then so is (n/2)/2, or n/4. And if n/4 is a power of 2, so is n/8, and so on, and so on, until our fraction is equal to 1, which we know is the smallest power of two. Thus, we can check recursively whether for a given input n, the value n/2 is a power of two. Here goes:
+    <pre class = "prettyprint lang-rb linenums">
+      def power_of_2(n)
+        return true if n == 1
+        return false if n % 2 != 0
+        power_of_2(n/2)
+      end
+
+      &gt;&gt; power_of_2(16)   #=> true
+      &gt;&gt; power_of_2(512)  #=> true
+      &gt;&gt; power_of_2(10)   #=> false
+      &gt;&gt; power_of_2(1000) #=> false</pre>
+    </p>
+    <p>
+      We see that 10 is not a power of two. Run it through our program. While 10 is even, after we divide it by 2 our value becomes 5, which is not even and thus cannot be a power of two. 512 on the other hand, <em>is</em> a power of two. To see why, consider the following: dividing by 2 sequentially we get 512, 256, 128, 64, 32, 16, 8, 4, 2, 1. Because we arrived at 1, we know that 512 must be a power of two. In fact it is equal to 2 to the power of 9. Voila!
+    </p>
+    <h3>Take Away</h3>
+    <p>
+      All of the problems examined here could have been solved without recursion. In some instances, using methods other than recursion may even be more efficient. But recursive solutions have their place, and you should be able to recognize when recursion can simplify such problems when confronted by them. Below I list a few things to consider when deciding whether to use recursion:
+      <ol>
+        <li>Can the problem be conceptualized as a set of smaller, yet similar problems?</li>
+        <li>If so, try to identify a base case, which is the problem distilled down to such an extent to have become trivial. This is sometimes straightforward, and at other times requires some creative thinking.</li>
+        <li>After you have a base case, work with a few concrete examples to see if you can determine a pattern. This pattern will likely become the part of the program that calls itself.</li>
+        <li>Remember to always begin your program with the base case so as to avoid infinite looping.</li>
+      </ol>
+      Finally, always remember to test your code!
+    </p>
   </section>
   <section>
     <div id="nav-footer">
-      <p class="post-nav"><a href="#">Previous</a> |</p>
+      <p class="post-nav"><a href="./c7-values.html">Previous</a> |</p>
       <p class="post-nav"><a href="./index.html">Home</a> |</p>
-      <p class="post-nav"><a href="#">Next</a></p>
+      <p class="post-nav"><a href="./c8-conflict.html">Next</a></p>
     </div>
   </section>
 </main>
