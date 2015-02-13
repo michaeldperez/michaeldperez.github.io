@@ -111,7 +111,7 @@
     </p>
     <h4>Sum of an Array of Numbers & Reversing a String</h4>
     <p>
-      <span class = "rbcode">Ruby</span> obviously has the methods <span class = "rbcode">reduce</span> and <span class = "rbcode">reverse</span>, which handle the summing an array of values and reversing a string, respectively. However, both procedures are helpful in illustrating recursion, even if it is not the most efficient method for solving these problems. We'll work through the logic of summing an array of values only, because it is very similar for reversing a string. After we solving the sum problem, the code for reversing a string will be self-evident.
+      <span class = "rbcode">Ruby</span> obviously has the methods <span class = "rbcode">reduce</span> and <span class = "rbcode">reverse</span>, which handle the summing an array of values and reversing a string, respectively. However, both procedures are helpful in illustrating recursion, even if it is not the most efficient method for solving these problems. We'll work through the logic of summing an array of values only, because it is very similar for reversing a string. After solving the sum problem, the code for reversing a string will be self-evident.
     </p>
     <p>
       As always, we begin by asking ourselves what is the base case for this problem? Unlike the previous examples, the end point may not be as evident in this case. Well, the sum of a single number is itself, so we can tell our program that if the size of our array is 1, then return the value indexed at 0. This will be our edge condition.
@@ -120,7 +120,7 @@
       What then, is the general pattern? The general pattern is as follows. A sum of N integers, 1 + 2 + 3 + ... + n, is the same as 1 + (2 + 3 + ... + n), which itself is equivalent to 1 + (2 + (3 + 4 + ... + n)), and so on, and so on. So if we have an array, we can think of our pattern as array[0] + array[1..-1], or array[0] + [array[1] + array[2..-1]], all the way down. This results in the following program:
     <pre class = "prettyprint lang-rb linenums">
       def sum(arr)
-        return 0 if array.empty?
+        return 0 if arr.empty?
         if arr.length == 1
           return arr[0]
         else
@@ -190,7 +190,7 @@
       The base case is the simplest power of two, which is 1 (2 raised to the 0th power). But what is the general pattern?
     </p>
     <p>
-      Let's look at the first five powers we found above. note that 2 is twice the size of 1, 4 is twice the size of 2, 8 is twice the size of 4, and 16 is twice the size of 8. So it would appear that a given power of two is twice the size of the power preceding it. Therefore, our goal for recursion is to reach the smallest power, 1. If we can go from the number we enter down to 1, the original number is a power of two. In other words, if n is a power of two, then so must be n/2. and if n/2 is a power of 2, then so is (n/2)/2, or n/4. And if n/4 is a power of 2, so is n/8, and so on, and so on, until our fraction is equal to 1, which we know is the smallest power of two. Thus, we can check recursively whether for a given input n, the value n/2 is a power of two. Here goes:
+      Let's look at the first five powers we found above. Note that 2 is twice the size of 1, 4 is twice the size of 2, 8 is twice the size of 4, and 16 is twice the size of 8. So it would appear that a given power of two is twice the size of the power preceding it. Therefore, our goal for recursion is to reach the smallest power, 1. If we can go from the number we enter down to 1, the original number is a power of two. In other words, if n is a power of two, then so must be n/2. And if n/2 is a power of 2, then so is (n/2)/2, or n/4. And if n/4 is a power of 2, so is n/8, and so on, and so on, until our fraction is equal to 1, which we know is the smallest power of two. Thus, we can check recursively whether for a given input n, the value n/2 is a power of two. Here goes:
     <pre class = "prettyprint lang-rb linenums">
       def power_of_2(n)
         return true if n == 1
