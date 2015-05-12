@@ -1,4 +1,4 @@
 michaeldperez.github.io
 =======================
 
-DBC GitHub page
+Personal website hosted by GitHub.
