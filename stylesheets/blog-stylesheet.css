@@ -16,7 +16,7 @@ main {
   display: inline-block;
 }
 
-#main-content {
+/*#main-content {
   background-color: #FFFFFF;
   border-radius: 5px;
   box-shadow: 2px 2px #000000;
@@ -31,7 +31,7 @@ main {
   position: relative;
   top: -220px;
   width: 800px;
-}
+}*/
 
 .overlay {
   background-color: #55ACEE;
